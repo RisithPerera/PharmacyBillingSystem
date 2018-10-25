@@ -36,7 +36,7 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage){
-        System.out.println("SQL Databse");    
+        System.out.println("SQL Databse");
         timeTask = new Task<Void>() {
             @Override 
             public Void call() throws InterruptedException {

@@ -29,8 +29,6 @@ public class ListConnection {
     private final ObservableList<NormalOrder> normalOrderList;
     private final ObservableList<NormalOrderData> normalOrderDataList;
     private final ObservableList<User> userList;
-   
-    private final ObservableList<String> recordList;
 
     private ListConnection() {
         this.customerList = FXCollections.observableArrayList();
@@ -39,8 +37,7 @@ public class ListConnection {
         this.normalOrderList = FXCollections.observableArrayList();
         this.normalOrderDataList = FXCollections.observableArrayList();
         this.userList = FXCollections.observableArrayList();
-        
-        this.recordList = FXCollections.observableArrayList();
+
     }
 
     public static ListConnection getInstance() {
@@ -72,9 +69,5 @@ public class ListConnection {
 
     public ObservableList<User> getUserList() {
         return userList;
-    }
-    
-     public ObservableList<String> getRecordList() {
-        return recordList;
     }
 }

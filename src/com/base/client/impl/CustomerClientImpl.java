@@ -12,6 +12,8 @@ import com.manifest.Data;
 import com.manifest.Symbol;
 import com.model.child.Customer;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.Collections;
 import javafx.collections.ObservableList;
 
@@ -23,11 +25,9 @@ public class CustomerClientImpl implements CustomerClient{
     
     private static CustomerClientImpl customerClient;
     private static ObservableList<Customer> customerList;
-    private static ObservableList<String> recordList;
 
     private CustomerClientImpl() {
         customerList = (ObservableList<Customer>) ListConnection.getInstance().getCustomerList();
-        recordList = (ObservableList<String>) ListConnection.getInstance().getRecordList();
     }
 
     public static CustomerClientImpl getInstance() {
@@ -40,7 +40,25 @@ public class CustomerClientImpl implements CustomerClient{
     @Override
     public  boolean add(Customer customer) throws IOException {
         customerList.add(customer);
-        return FileManager.getInstance().addRecord(customer, Data.CUSTOMER);
+        String query = "Insert into member values(?,?,?,?,?,?,?,?,?,?,?)";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        PreparedStatement state = conn.prepareStatement(query);
+
+        state.setObject(1 , member.getMemId());
+        state.setObject(2 , member.getName());
+        state.setObject(3 , member.getAddress());
+        state.setObject(4 , member.getDob());
+        state.setObject(5 , member.getNic());
+        state.setObject(6 , member.getContact());
+        state.setObject(7 , member.isGender());
+        state.setObject(8 , member.isIsMember());
+        state.setObject(9 , member.isIsActive());
+        state.setObject(10, member.isIsApplicant());
+        state.setObject(11, member.getParentId());
+        if (state.executeUpdate() > 0){
+            return true;
+        }
+        return false;
     }
 
     @Override
