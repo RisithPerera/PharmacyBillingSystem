@@ -20,13 +20,13 @@ import java.util.Objects;
 public class CustomerOrder extends SuperModel implements Comparable<CustomerOrder>{
     private String date;
     private String time;
-    private String id;
+    private int id;
     private Customer customer;
 
     public CustomerOrder() {
     }
 
-    public CustomerOrder(String date, String time, String id, Customer customer) {
+    public CustomerOrder(String date, String time, int id, Customer customer) {
         this.date = date;
         this.time = time;
         this.id = id;
@@ -49,11 +49,11 @@ public class CustomerOrder extends SuperModel implements Comparable<CustomerOrde
         this.time = time;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -61,7 +61,7 @@ public class CustomerOrder extends SuperModel implements Comparable<CustomerOrde
         return customer;
     }
 
-    public String getCustomerId() {
+    public int getCustomerId() {
         return customer.getId();
     }
      
@@ -89,14 +89,14 @@ public class CustomerOrder extends SuperModel implements Comparable<CustomerOrde
     
     @Override
     public int compareTo(CustomerOrder dto) {
-        boolean logic = Integer.parseInt(dto.getId()) > Integer.parseInt(this.getId());
+        boolean logic = dto.getId() > this.getId();
         return  logic ? -1 : !logic ? 1 : 0;
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof CustomerOrder) {
-            return ((CustomerOrder)obj).getId().equals(this.getId());
+            return ((Customer)obj).getId() == this.getId();
         }
         return false;
     }

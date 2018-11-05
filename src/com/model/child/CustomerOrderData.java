@@ -19,27 +19,26 @@ import java.util.Objects;
 
 public class CustomerOrderData extends SuperModel implements Comparable<CustomerOrderData>{
    
-    private String id;
+    private int id;
     private CustomerOrder customerOrder;
-    private String amount;
-    private String rate;
+    private double amount;
+    private int rate;
     
     public CustomerOrderData() {
     }
 
-    public CustomerOrderData(String id, CustomerOrder customerOrder, String amount, String rate) {
+    public CustomerOrderData(int id, CustomerOrder customerOrder, double amount, int rate) {
         this.id = id;
         this.customerOrder = customerOrder;
         this.amount = amount;
         this.rate = rate;
     }
 
-    
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -47,31 +46,31 @@ public class CustomerOrderData extends SuperModel implements Comparable<Customer
         return customerOrder;
     }
 
-    public String getCustomerOrderId() {
+    private int getCustomerOrderId() {
         return customerOrder.getId();
     }
-    
+
     public void setCustomerOrder(CustomerOrder customerOrder) {
         this.customerOrder = customerOrder;
     }
 
     public double getAmount() {
-        return Double.parseDouble(amount);
+        return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    public double getRate() {
-        return Double.parseDouble(rate);
+    public int getRate() {
+        return rate;
     }
 
-    public void setRate(String discountRate) {
-        this.rate = discountRate;
+    public void setRate(int rate) {
+        this.rate = rate;
     }
-      
-    //-------------------------- Calculatons ----------------------------------//
+
+//-------------------------- Calculatons ----------------------------------//
    
     public double getDiscount() {
         return getAmount() * getRate()/100;
@@ -92,18 +91,19 @@ public class CustomerOrderData extends SuperModel implements Comparable<Customer
                 getCustomerOrderId()  + Symbol.SPLIT +
                 getAmount()           + Symbol.SPLIT +
                 getRate();              
-    }      
-    
+    }
+
+
     @Override
     public int compareTo(CustomerOrderData dto) {
-        boolean logic = Integer.parseInt(dto.getId()) > Integer.parseInt(this.getId());
+        boolean logic = dto.getId() > this.getId();
         return  logic ? -1 : !logic ? 1 : 0;
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof CustomerOrderData) {
-            return ((CustomerOrderData)obj).getId().equals(this.getId());
+            return ((CustomerOrderData)obj).getId() == this.getId();
         }
         return false;
     }

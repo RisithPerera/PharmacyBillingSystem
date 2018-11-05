@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 public class Customer extends SuperModel implements Comparable<Customer>{
     private String date;
     private String time;
-    private String id;
+    private int id;
     private String fName;
     private String lName;
     private String street;
@@ -40,11 +40,15 @@ public class Customer extends SuperModel implements Comparable<Customer>{
     private String email;
     private String issueDate;
     private String expireDate;
-    private String points;
+    private double points;
 
     public Customer() {}
 
-    public Customer(String date, String time, String id, String fName, String lName, String street, String city, String district, String dob, String nicNo, String licNo, String teleNo, String whatsappNo, String viberNo, String email, String issueDate, String expireDate, String points) {
+    public Customer(int id) {
+        this.id = id;
+    }
+
+    public Customer(String date, String time, int id, String fName, String lName, String street, String city, String district, String dob, String nicNo, String licNo, String teleNo, String whatsappNo, String viberNo, String email, String issueDate, String expireDate, double points) {
         this.date = date;
         this.time = time;
         this.id = id;
@@ -81,11 +85,11 @@ public class Customer extends SuperModel implements Comparable<Customer>{
         this.time = time;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -201,11 +205,11 @@ public class Customer extends SuperModel implements Comparable<Customer>{
         this.expireDate = expireDate;
     }
 
-    public String getPoints() {
+    public double getPoints() {
         return points;
     }
 
-    public void setPoints(String points) {
+    public void setPoints(double points) {
         this.points = points;
     }
   
@@ -278,14 +282,14 @@ public class Customer extends SuperModel implements Comparable<Customer>{
     
     @Override
     public int compareTo(Customer dto) {
-        boolean logic = Integer.parseInt(dto.getId()) > Integer.parseInt(this.getId());
+        boolean logic = dto.getId() > this.getId();
         return  logic ? -1 : !logic ? 1 : 0;
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Customer) {
-            return Integer.parseInt(((Customer)obj).getId()) == Integer.parseInt(this.getId());
+            return ((Customer)obj).getId() == this.getId();
         }
         return false;
     }

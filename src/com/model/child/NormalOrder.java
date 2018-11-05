@@ -20,13 +20,13 @@ import java.util.Objects;
 public class NormalOrder extends SuperModel implements Comparable<NormalOrder>{
     private String date;
     private String time;
-    private String id;
+    private int id;
 
 
     public NormalOrder() {
     }
 
-    public NormalOrder(String date, String time, String id) {
+    public NormalOrder(String date, String time, int id) {
         this.date = date;
         this.time = time;
         this.id = id;
@@ -48,11 +48,11 @@ public class NormalOrder extends SuperModel implements Comparable<NormalOrder>{
         this.time = time;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -72,14 +72,14 @@ public class NormalOrder extends SuperModel implements Comparable<NormalOrder>{
     
     @Override
     public int compareTo(NormalOrder dto) {
-        boolean logic = Integer.parseInt(dto.getId()) > Integer.parseInt(this.getId());
+        boolean logic = dto.getId() > this.getId();
         return  logic ? -1 : !logic ? 1 : 0;
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof NormalOrder) {
-            return ((NormalOrder)obj).getId().equals(this.getId());
+            return ((NormalOrder)obj).getId() == this.getId();
         }
         return false;
     }

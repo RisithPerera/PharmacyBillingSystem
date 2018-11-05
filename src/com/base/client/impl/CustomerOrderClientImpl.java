@@ -65,7 +65,7 @@ public class CustomerOrderClientImpl implements CustomerOrderClient{
     }
 
     @Override
-    public CustomerOrder search(String id) throws IOException {
+    public CustomerOrder search(int id) throws IOException {
         CustomerOrder customerOrder = new CustomerOrder();
         customerOrder.setId(id);
         if (customerOrderList.isEmpty()) {

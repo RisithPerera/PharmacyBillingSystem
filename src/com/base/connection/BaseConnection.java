@@ -14,7 +14,7 @@ public class BaseConnection {
 
     private BaseConnection() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.jdbc.Driver");
-        conn = DriverManager.getConnection("jdbc:mysql://localhost/sanasa","root","apple");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/pharmarcy","root","apple");
     }
 
     public static BaseConnection createConnection() throws ClassNotFoundException, SQLException{

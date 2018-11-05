@@ -8,6 +8,8 @@ package com.base.client.superb;
 
 import com.model.superb.SuperModel;
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javafx.collections.ObservableList;
 
 /**
@@ -16,12 +18,11 @@ import javafx.collections.ObservableList;
  * @param <T>
  */
 public interface SuperClient<T extends SuperModel>{    
-    public boolean add(T t) throws IOException;
-    public boolean update(T t) throws IOException;
-    public T search(String t) throws IOException;
-    public boolean delete(T t) throws IOException;  
-    public ObservableList<T> getAll() throws IOException;
-    public long getNextId() throws IOException;
-    public boolean readAll() throws IOException;
-    public boolean writeAll() throws IOException;
+    public boolean add(T t) throws SQLException, ClassNotFoundException;
+    public boolean update(T t) throws SQLException, ClassNotFoundException;
+    public T search(int t);
+    public boolean delete(int t) throws SQLException, ClassNotFoundException;
+    public ObservableList<T> getAll();
+    public void loadAll() throws SQLException;
+    public int getNextId() throws SQLException, ClassNotFoundException;
 }

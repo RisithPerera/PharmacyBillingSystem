@@ -19,27 +19,26 @@ import java.util.Objects;
 
 public class NormalOrderData extends SuperModel implements Comparable<NormalOrderData>{
    
-    private String id;
+    private int id;
     private NormalOrder normalOrder;
-    private String amount;
-    private String rate;
+    private double amount;
+    private int rate;
 
     public NormalOrderData() {
     }
 
-    public NormalOrderData(String id, NormalOrder normalOrder, String amount, String rate) {
+    public NormalOrderData(int id, NormalOrder normalOrder, double amount, int rate) {
         this.id = id;
         this.normalOrder = normalOrder;
         this.amount = amount;
         this.rate = rate;
     }
 
-    
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -47,30 +46,31 @@ public class NormalOrderData extends SuperModel implements Comparable<NormalOrde
         return normalOrder;
     }
 
-    public String getNormalOrderId() {
+    public int getNormalOrderId() {
         return normalOrder.getId();
     }
-    
+
     public void setNormalOrder(NormalOrder normalOrder) {
         this.normalOrder = normalOrder;
     }
 
     public double getAmount() {
-        return Double.parseDouble(amount);
+        return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    public double getRate() {
-        return Double.parseDouble(rate);
+    public int getRate() {
+        return rate;
     }
 
-    public void setRate(String discountRate) {
-        this.rate = discountRate;
+    public void setRate(int rate) {
+        this.rate = rate;
     }
-    
+
+
     //-------------------------- Calculatons ----------------------------------//
    
     public double getDiscount() {
@@ -97,14 +97,14 @@ public class NormalOrderData extends SuperModel implements Comparable<NormalOrde
     
     @Override
     public int compareTo(NormalOrderData dto) {
-        boolean logic = Integer.parseInt(dto.getId()) > Integer.parseInt(this.getId());
+        boolean logic = dto.getId() > this.getId();
         return  logic ? -1 : !logic ? 1 : 0;
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof NormalOrderData) {
-            return ((NormalOrderData)obj).getId().equals(this.getId());
+            return ((NormalOrderData)obj).getId() == this.getId();
         }
         return false;
     }
