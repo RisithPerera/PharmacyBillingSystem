@@ -6,13 +6,17 @@
 package com.base.client.impl;
 
 import com.base.client.NormalOrderClient;
-import com.base.file.FileManager;
+import com.base.connection.BaseConnection;
 import com.base.list.ListConnection;
 import com.manifest.Data;
 import com.manifest.Symbol;
+import com.model.child.CustomerOrder;
 import com.model.child.NormalOrder;
 import java.io.IOException;
+import java.sql.*;
 import java.util.Collections;
+
+import com.model.child.NormalOrderData;
 import javafx.collections.ObservableList;
 
 /**
@@ -23,11 +27,9 @@ public class NormalOrderClientImpl implements NormalOrderClient{
     
     private static NormalOrderClientImpl normalOrderClientImpl;
     private static ObservableList<NormalOrder> normalOrderList;
-    private static ObservableList<String> recordList;
 
     private NormalOrderClientImpl() {
         normalOrderList = (ObservableList<NormalOrder>) ListConnection.getInstance().getNormalOrderList();
-        recordList = (ObservableList<String>) ListConnection.getInstance().getRecordList();
     }
     
     public static NormalOrderClientImpl getInstance() {
@@ -38,37 +40,34 @@ public class NormalOrderClientImpl implements NormalOrderClient{
     }
   
     @Override
-    public boolean add(NormalOrder normalOrder) throws IOException {
-        if(normalOrderList.isEmpty()){
-            normalOrderList.add(0, normalOrder);
-        }else{
-            normalOrderList.add(normalOrderList.size()-1, normalOrder);
-        }    
-        return FileManager.getInstance().addRecord(normalOrder, Data.NORMAL_ORDER);
-    }
+    public boolean add(NormalOrder normalOrder) throws SQLException, ClassNotFoundException {
+        normalOrderList.add(normalOrder);
+        String query = "Insert into normalOrder values(?,?,?)";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        PreparedStatement state = conn.prepareStatement(query);
 
-    public boolean update(NormalOrder normalOrder) throws IOException {
-        if(!normalOrderList.isEmpty()){
-            int index = normalOrderList.indexOf(normalOrder.getId());
-            normalOrderList.set(index, normalOrder);
-            return writeAll();
+        state.setObject(1, normalOrder.getDate());
+        state.setObject(2, normalOrder.getTime());
+        state.setObject(3, normalOrder.getId());
+
+        if (state.executeUpdate() > 0) {
+            return true;
         }
         return false;
     }
 
-    @Override
-    public boolean delete(NormalOrder normalOrder) throws IOException {
-        normalOrderList.remove(normalOrder);
-        return writeAll();
+    public boolean update(NormalOrder normalOrder){
+        return true;
     }
 
     @Override
-    public NormalOrder search(String id) throws IOException {
-        NormalOrder normalOrder = new NormalOrder();
-        normalOrder.setId(id);
-        if (normalOrderList.isEmpty()) {
-            readAll();
-        }
+    public boolean delete(int id){
+        return true;
+    }
+
+    @Override
+    public NormalOrder search(int id)  {
+        NormalOrder normalOrder = new NormalOrder(id);
         int index = normalOrderList.indexOf(normalOrder);
         if (index != -1) {
             return normalOrderList.get(index);
@@ -77,55 +76,38 @@ public class NormalOrderClientImpl implements NormalOrderClient{
     }
 
     @Override
-    public ObservableList<NormalOrder> getAll() throws IOException {
-        if (normalOrderList.isEmpty()) {
-            readAll();
-        }
+    public ObservableList<NormalOrder> getAll(){
         return normalOrderList;
     }
 
     @Override
-    public boolean readAll() throws IOException {
-        FileManager.getInstance().readAllRecords(Data.NORMAL_ORDER);
-        normalOrderList.clear();
-        try{
-            for(String line : recordList) {
-                String[] parts = line.split(Symbol.SPLIT_SYMBOL_EXPRESSION);
-                NormalOrder normalOrder = new NormalOrder(parts[0], parts[1], parts[2]);
-                normalOrderList.add(normalOrder);
-            }
-        }catch(Exception e){
-            System.out.println("NormalOrder Database is malfunctioned");
+    public void loadAll() throws SQLException, ClassNotFoundException {
+        String query = "Select * from normalOrder";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        Statement state = conn.createStatement();
+        ResultSet result = state.executeQuery(query);
+
+        while (result.next()) {
+            NormalOrder normalOrder = new NormalOrder();
+
+            normalOrder.setDate(result.getString(1));
+            normalOrder.setTime(result.getString(2));
+            normalOrder.setId(result.getInt(3));
+
+            normalOrderList.add(normalOrder);
         }
-        Collections.sort(normalOrderList);
-        return true;
+        System.out.println("Normal Order List Loaded : " + normalOrderList.size());
     }
 
     @Override
-    public boolean writeAll() throws IOException {
-        recordList.clear();
-        if (normalOrderList != null) {
-            Collections.sort(normalOrderList);
-            normalOrderList.stream().forEach((customDTO) -> {
-                recordList.add(customDTO.toString());
-            });
-            FileManager.getInstance().writeAllRecords(Data.NORMAL_ORDER);
+    public int getNextId() throws SQLException, ClassNotFoundException {
+        String query = "Select norOrderId+1 from normalOrder order by 1 desc limit 1";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        PreparedStatement state = conn.prepareStatement(query);
+        ResultSet result = state.executeQuery();
+        if (result.next()) {
+            return result.getInt(3);
         }
-        return true;
-    }
-    
-     @Override
-    public long getNextId() {
-        if (normalOrderList.isEmpty()) {
-            return 0;
-        }
-        long preIndex = -1;
-        for (NormalOrder normalOrder : normalOrderList) {
-            if(Long.parseLong(normalOrder.getId()) - preIndex > 1){
-                break;
-            }
-            preIndex = Long.parseLong(normalOrder.getId());
-        }
-        return preIndex+1;
+        return 0;
     }
 }

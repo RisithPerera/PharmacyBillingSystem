@@ -23,7 +23,10 @@ public class CustomerOrder extends SuperModel implements Comparable<CustomerOrde
     private int id;
     private Customer customer;
 
-    public CustomerOrder() {
+    public CustomerOrder() {}
+
+    public CustomerOrder(int id) {
+        this.id = id;
     }
 
     public CustomerOrder(String date, String time, int id, Customer customer) {

@@ -6,13 +6,14 @@
 package com.base.client.impl;
 
 import com.base.client.CustomerOrderDataClient;
-import com.base.file.FileManager;
+import com.base.connection.BaseConnection;
 import com.base.list.ListConnection;
 import com.manifest.Data;
 import com.manifest.Symbol;
 import com.model.child.CustomerOrder;
 import com.model.child.CustomerOrderData;
 import java.io.IOException;
+import java.sql.*;
 import java.util.Collections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,12 +25,14 @@ import javafx.collections.ObservableList;
 public class CustomerOrderDataClientImpl implements CustomerOrderDataClient{ 
     
     private static CustomerOrderDataClientImpl customerOrderDataClientImpl;
+    private static ObservableList<CustomerOrder> customerOrderList;
     private static ObservableList<CustomerOrderData> customerOrderDataList;
-    private static ObservableList<String> recordList;
+
 
     private CustomerOrderDataClientImpl() {
+        customerOrderList =  (ObservableList<CustomerOrder>) ListConnection.getInstance().getCustomerOrderList();
         customerOrderDataList = (ObservableList<CustomerOrderData>) ListConnection.getInstance().getCustomerOrderDataList();
-        recordList = (ObservableList<String>) ListConnection.getInstance().getRecordList();
+
     }
    
     public static CustomerOrderDataClientImpl getInstance() {
@@ -41,31 +44,36 @@ public class CustomerOrderDataClientImpl implements CustomerOrderDataClient{
     
   
     @Override
-    public boolean add(CustomerOrderData customerOrderData) throws IOException {        
-        customerOrderDataList.add(customerOrderData);        
-        return FileManager.getInstance().addRecord(customerOrderData, Data.CUSTOMER_ORDER_DATA);
-    }
+    public boolean add(CustomerOrderData customerOrderData) throws SQLException, ClassNotFoundException {
+        customerOrderDataList.add(customerOrderData);
+        String query = "Insert into customerOrderData values(?,?,?,?)";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        PreparedStatement state = conn.prepareStatement(query);
 
-    @Override
-    public boolean update(CustomerOrderData customerOrderData) throws IOException {
-        int index = customerOrderDataList.indexOf(customerOrderData.getId());
-        customerOrderDataList.set(index, customerOrderData);
-        return writeAll();
-    }
+        state.setObject(1, customerOrderData.getId());
+        state.setObject(2, customerOrderData.getCustomerOrder().getId());
+        state.setObject(3, customerOrderData.getAmount());
+        state.setObject(4, customerOrderData.getDiscount());
 
-    @Override
-    public boolean delete(CustomerOrderData customerOrderData) throws IOException {
-        customerOrderDataList.remove(customerOrderData);
-        return writeAll();
-    }
-
-    @Override
-    public CustomerOrderData search(String id) throws IOException {
-        CustomerOrderData customerOrderData = new CustomerOrderData();
-        customerOrderData.setId(id);
-        if (customerOrderDataList.isEmpty()) {
-            readAll();
+        if (state.executeUpdate() > 0){
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public boolean update(CustomerOrderData customerOrderData) {
+       return true;
+    }
+
+    @Override
+    public boolean delete(int id)  {
+        return true;
+    }
+
+    @Override
+    public CustomerOrderData search(int id) {
+        CustomerOrderData customerOrderData = new CustomerOrderData(id);
         int index = customerOrderDataList.indexOf(customerOrderData);
         if (index != -1) {
             return customerOrderDataList.get(index);
@@ -74,99 +82,43 @@ public class CustomerOrderDataClientImpl implements CustomerOrderDataClient{
     }
 
     @Override
-    public ObservableList<CustomerOrderData> getAll() throws IOException {
-        if (customerOrderDataList.isEmpty()) {
-            readAll();
-        }
+    public ObservableList<CustomerOrderData> getAll(){
         return customerOrderDataList;
     }
-    
-    @Override
-    public boolean addOrderData(ObservableList<CustomerOrderData> list) throws IOException {
-        for (CustomerOrderData customerOrderData : list) {
-            customerOrderData.setId(Long.toString(getNextId()));
-            customerOrderDataList.add(customerOrderData);
-            Collections.sort(customerOrderDataList);
-        }       
-        return writeAll();
-    }
 
     @Override
-    public boolean updateOrderData(CustomerOrder customerOrder, ObservableList<CustomerOrderData> list) throws IOException {
-        customerOrderDataList.removeIf(customerOrderData -> customerOrderData.getCustomerOrder().equals(customerOrder));
-        return addOrderData(list);
+    public void loadAll() throws SQLException, ClassNotFoundException {
+        String query = "Select * from customerOrderData";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        Statement state = conn.createStatement();
+        ResultSet result = state.executeQuery(query);
+
+        while (result.next()) {
+            CustomerOrderData customerOrderData = new CustomerOrderData();
+
+            customerOrderData.setId(result.getInt(1));
+            if(customerOrderList.isEmpty()){
+                CustomerOrderClientImpl.getInstance().loadAll();
+            }
+            customerOrderData.setCustomerOrder(CustomerOrderClientImpl.getInstance().search(result.getInt(2)));
+            customerOrderData.setAmount(result.getDouble(3));
+            customerOrderData.setRate(result.getInt(4));
+
+            if(customerOrderData.getCustomerOrder() !=  null) customerOrderDataList.add(customerOrderData);
+        }
+        System.out.println("Customer Order Data List Loaded : " + customerOrderDataList.size());
     }
 
-    @Override
-    public boolean deleteOrderData(CustomerOrder customerOrder) throws IOException {       
-        customerOrderDataList.removeIf(customerOrderData -> customerOrderData.getCustomerOrder().equals(customerOrder));
-        return writeAll();
-    }
-    
-    @Override
-    public ObservableList<CustomerOrderData> getOrderData(CustomerOrder customerOrder) throws IOException { 
-        ObservableList<CustomerOrderData> list = FXCollections.observableArrayList();
-        for (CustomerOrderData customerOrderData : customerOrderDataList) {
-            if(customerOrderData.getCustomerOrder().equals(customerOrder)){
-                list.add(customerOrderData);
-            }
-        }
-        return list;
-    }
-    
-    @Override
-    public long getNextId() {
-        if (customerOrderDataList.isEmpty()) {
-            return 0;
-        }
-        long preIndex = -1;
-        for (CustomerOrderData customerOrderData : customerOrderDataList) {
-            if(Long.parseLong(customerOrderData.getId()) - preIndex > 1){
-                break;
-            }
-            preIndex = Long.parseLong(customerOrderData.getId());
-        }
-        return preIndex+1;
-    }
-    
-    @Override
-    public boolean readAll() throws IOException {
-        FileManager.getInstance().readAllRecords(Data.CUSTOMER_ORDER_DATA);
-        customerOrderDataList.clear();
-        try{
-            for (String line : recordList) {
-                String[] parts = line.split(Symbol.SPLIT_SYMBOL_EXPRESSION);
-                System.out.println("Customer Order Data Parts : "+parts.length);
-                CustomerOrder customerOrder = CustomerOrderClientImpl.getInstance().search(parts[1]);
-                if(customerOrder != null){
-                    CustomerOrderData customerOrderData = new CustomerOrderData(parts[0],
-                                                                                customerOrder, 
-                                                                                parts[2], 
-                                                                                parts[3]);
-                    customerOrderDataList.add(customerOrderData);
-                }else{
-                    System.out.println("CustomerOrderId "+parts[1]+" Data is lost.");
-                }
-            }
-        
-        }catch(IOException e){
-            System.out.println("CustomerOrderData Database is malfunctioned");
-        }
-        Collections.sort(customerOrderDataList);
-        return true;
-    }
 
-  
     @Override
-    public boolean writeAll() throws IOException {
-        recordList.clear();
-        if (customerOrderDataList != null) {
-            Collections.sort(customerOrderDataList);
-            customerOrderDataList.stream().forEach((customerOrderData) -> {
-                recordList.add(customerOrderData.toString());
-            });
-            FileManager.getInstance().writeAllRecords(Data.CUSTOMER_ORDER_DATA);
+    public int getNextId() throws SQLException, ClassNotFoundException {
+        String query = "Select cusOrderDataId+1 from customerOrderData order by 1 desc limit 1";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        PreparedStatement state = conn.prepareStatement(query);
+        ResultSet result = state.executeQuery();
+        if (result.next()) {
+            return result.getInt(1);
         }
-        return true;
+        return 0;
     }
 }

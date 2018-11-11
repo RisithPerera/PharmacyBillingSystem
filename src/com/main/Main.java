@@ -13,6 +13,7 @@ import com.base.client.impl.NormalOrderDataClientImpl;
 import com.base.client.impl.UserClientImpl;
 import com.manifest.View;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -68,14 +69,16 @@ public class Main extends Application {
     
     public static void initializeDatabase(){
         try {
-            CustomerClientImpl.getInstance().readAll();
-            CustomerOrderClientImpl.getInstance().readAll();
-            CustomerOrderDataClientImpl.getInstance().readAll();
-            NormalOrderClientImpl.getInstance().readAll();
-            NormalOrderDataClientImpl.getInstance().readAll();
-            UserClientImpl.getInstance().readAll();
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            CustomerClientImpl.getInstance().loadAll();
+            CustomerOrderClientImpl.getInstance().loadAll();
+            CustomerOrderDataClientImpl.getInstance().loadAll();
+            NormalOrderClientImpl.getInstance().loadAll();
+            NormalOrderDataClientImpl.getInstance().loadAll();
+            UserClientImpl.getInstance().loadAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

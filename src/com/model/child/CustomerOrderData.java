@@ -27,6 +27,10 @@ public class CustomerOrderData extends SuperModel implements Comparable<Customer
     public CustomerOrderData() {
     }
 
+    public CustomerOrderData(int id){
+        this.id = id;
+    }
+
     public CustomerOrderData(int id, CustomerOrder customerOrder, double amount, int rate) {
         this.id = id;
         this.customerOrder = customerOrder;

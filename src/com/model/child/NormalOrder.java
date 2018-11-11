@@ -23,7 +23,10 @@ public class NormalOrder extends SuperModel implements Comparable<NormalOrder>{
     private int id;
 
 
-    public NormalOrder() {
+    public NormalOrder() {}
+
+    public NormalOrder(int id) {
+        this.id = id;
     }
 
     public NormalOrder(String date, String time, int id) {

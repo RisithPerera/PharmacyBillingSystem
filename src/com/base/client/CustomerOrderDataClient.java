@@ -18,9 +18,4 @@ import javafx.collections.ObservableList;
  *
  * @author RISITH-PC
  */
-public interface CustomerOrderDataClient extends SuperClient<CustomerOrderData>{
-    public boolean addOrderData(ObservableList<CustomerOrderData> list) throws IOException;
-    public boolean updateOrderData(CustomerOrder t, ObservableList<CustomerOrderData> list) throws IOException;
-    public boolean deleteOrderData(CustomerOrder t) throws IOException;
-    public ObservableList<CustomerOrderData> getOrderData(CustomerOrder t) throws IOException;
-}
+public interface CustomerOrderDataClient extends SuperClient<CustomerOrderData>{}

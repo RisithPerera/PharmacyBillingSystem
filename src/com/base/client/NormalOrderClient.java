@@ -8,10 +8,16 @@ package com.base.client;
 
 import com.base.client.superb.SuperClient;
 import com.model.child.NormalOrder;
+import com.model.child.NormalOrderData;
+import javafx.collections.ObservableList;
+
+import java.io.IOException;
 
 
 /**
  *
  * @author RISITH-PC
  */
-public interface NormalOrderClient extends SuperClient<NormalOrder>{}
+public interface NormalOrderClient extends SuperClient<NormalOrder>{
+
+}

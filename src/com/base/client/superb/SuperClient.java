@@ -23,6 +23,6 @@ public interface SuperClient<T extends SuperModel>{
     public T search(int t);
     public boolean delete(int t) throws SQLException, ClassNotFoundException;
     public ObservableList<T> getAll();
-    public void loadAll() throws SQLException;
+    public void loadAll() throws SQLException, ClassNotFoundException;
     public int getNextId() throws SQLException, ClassNotFoundException;
 }

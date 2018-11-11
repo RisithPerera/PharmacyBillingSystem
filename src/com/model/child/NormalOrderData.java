@@ -27,6 +27,10 @@ public class NormalOrderData extends SuperModel implements Comparable<NormalOrde
     public NormalOrderData() {
     }
 
+    public NormalOrderData(int id) {
+        this.id = id;
+    }
+
     public NormalOrderData(int id, NormalOrder normalOrder, double amount, int rate) {
         this.id = id;
         this.normalOrder = normalOrder;

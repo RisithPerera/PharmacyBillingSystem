@@ -18,15 +18,19 @@ public class User extends SuperModel implements Comparable<User>{
     
     private String date;
     private String time;
-    private String id;    
+    private int id;
     private String userName;
     private String password;
-    private String type;
+    private int type;
 
     public User() {
     }
 
-    public User(String date, String time, String id, String userName, String password, String type) {
+    public User(int id) {
+        this.id = id;
+    }
+
+    public User(String date, String time, int id, String userName, String password, int type) {
         this.date = date;
         this.time = time;
         this.id = id;
@@ -51,11 +55,11 @@ public class User extends SuperModel implements Comparable<User>{
         this.time = time;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -75,14 +79,14 @@ public class User extends SuperModel implements Comparable<User>{
         this.password = password;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
-    
+
     //-----------------------------------------------------------------//
     
     @Override
@@ -97,14 +101,14 @@ public class User extends SuperModel implements Comparable<User>{
     
     @Override
     public int compareTo(User dto) {
-        boolean logic = Integer.parseInt(dto.getId()) > Integer.parseInt(this.getId());
+        boolean logic = dto.getId() > this.getId();
         return  logic ? -1 : !logic ? 1 : 0;
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof User) {
-            return ((User)obj).getId().equals(this.getId());
+            return ((User)obj).getId() == this.getId();
         }
         return false;
     }

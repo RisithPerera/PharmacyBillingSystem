@@ -18,9 +18,5 @@ import javafx.collections.ObservableList;
  * @author RISITH-PC
  */
 public interface NormalOrderDataClient extends SuperClient<NormalOrderData>{
-    public boolean addOrderData(ObservableList<NormalOrderData> list) throws IOException;
-    public boolean updateOrderData(NormalOrder t, ObservableList<NormalOrderData> list) throws IOException;
-    public boolean deleteOrderData(NormalOrder t) throws IOException;
-    public ObservableList<NormalOrderData> getOrderData(NormalOrder t) throws IOException;
-
+    public ObservableList<NormalOrderData> getAllData(NormalOrder t);
 }

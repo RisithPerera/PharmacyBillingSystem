@@ -13,6 +13,7 @@ import com.manifest.View;
 import com.model.child.Customer;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -27,6 +28,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+
+import static com.base.client.impl.CustomerClientImpl.*;
 
 /**
  * FXML Controller class
@@ -106,8 +109,14 @@ public class CustomerAddCtrl implements Initializable {
         controllerType = State.ControllerType.CUSTOMER_ADD;
         selectedCustomer = null;
         saveBtn.setText("Save");
-        
-        idText.setText(Long.toString(CustomerClientImpl.getInstance().getNextId()));
+
+        try {
+            idText.setText(Integer.toString(CustomerClientImpl.getInstance().getNextId()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         districtChoice.getSelectionModel().select(0);
         dobText.setValue(LocalDate.of(1990, 01, 01));
         LocalDate localDate = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
@@ -119,8 +128,8 @@ public class CustomerAddCtrl implements Initializable {
         controllerType = State.ControllerType.CUSTOMER_UPDATE;
         selectedCustomer = customer;
         saveBtn.setText("Update"); 
-        
-        idText.setText(customer.getId());    
+
+        idText.setText(Integer.toString(customer.getId()));
         fNameText.setText(customer.getFName()); 
         lNameText.setText(customer.getLName());      
         streetText.setText(customer.getStreet());    
@@ -141,7 +150,7 @@ public class CustomerAddCtrl implements Initializable {
         selectedCustomer = new Customer();
         selectedCustomer.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));   
         selectedCustomer.setTime(new SimpleDateFormat("hh:mm:ss").format(new Date()));    
-        selectedCustomer.setId(Long.toString(CustomerClientImpl.getInstance().getNextId())); 
+        selectedCustomer.setId(Long.toString(getInstance().getNextId()));
         selectedCustomer.setFName(fNameText.getText()); 
         selectedCustomer.setLName(lNameText.getText());      
         selectedCustomer.setStreet(streetText.getText());    
@@ -156,13 +165,17 @@ public class CustomerAddCtrl implements Initializable {
         selectedCustomer.setEmail(emailText.getText());     
         selectedCustomer.setIssueDate(issueDateText.getValue().toString());
         selectedCustomer.setExpireDate(expDateText.getValue().toString());
-        selectedCustomer.setPoints(Integer.toString(0));
+        selectedCustomer.setPoints(0);
         try {
-            CustomerClientImpl.getInstance().add(selectedCustomer);
+            getInstance().add(selectedCustomer);
             MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.ADD, Data.CUSTOMER));
             MainCtrl.getInstance().showContent(String.format(View.PATH, View.CUSTOMER_VIEW));
-        } catch (IOException ex) {
-            Logger.getLogger(CustomerAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -183,11 +196,15 @@ public class CustomerAddCtrl implements Initializable {
             selectedCustomer.setIssueDate(issueDateText.getValue().toString());
             selectedCustomer.setExpireDate(expDateText.getValue().toString()); 
             try {
-                CustomerClientImpl.getInstance().update(selectedCustomer);
+                getInstance().update(selectedCustomer);
                 MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.UPDATE, Data.CUSTOMER));
                 MainCtrl.getInstance().showContent(String.format(View.PATH, View.CUSTOMER_VIEW));
             } catch (IOException ex) {
                 Logger.getLogger(CustomerAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }else{
             MessageBoxViewCtrl.display(Message.TITLE,"Selected Customer Is Null Object");

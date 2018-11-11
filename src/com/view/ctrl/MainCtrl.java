@@ -133,9 +133,9 @@ public class MainCtrl {
     
     public void updateLoginContent(User user){
         switch(user.getType()){
-            case "0": userTypeText.setText("Login As : ADMINISTRATOR"); break;
-            case "1": userTypeText.setText("Login As : CLERK");         break;
-            case "2": userTypeText.setText("Login As : AUDIT");
+            case 0: userTypeText.setText("Login As : ADMINISTRATOR"); break;
+            case 1: userTypeText.setText("Login As : CLERK");         break;
+            case 2: userTypeText.setText("Login As : AUDIT");
         }
         
         userNameText.setText("Current User : " + user.getUserName());

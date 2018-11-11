@@ -148,38 +148,40 @@ public class CustomerClientImpl implements CustomerClient {
     }
 
     @Override
-    public void loadAll() throws SQLException {
-        String query = "Select * from customer";
-        Connection conn = BaseConnection.createConnection().getConnection();
-        Statement state = conn.createStatement();
-        ResultSet result = state.executeQuery(query);
+    public void loadAll() throws SQLException, ClassNotFoundException {
+        if(customerList.isEmpty()) {
+            String query = "Select * from customer";
+            Connection conn = BaseConnection.createConnection().getConnection();
+            Statement state = conn.createStatement();
+            ResultSet result = state.executeQuery(query);
 
-        while (result.next()) {
-            Customer customer = new Customer();
+            while (result.next()) {
+                Customer customer = new Customer();
 
-            customer.setDate(result.getString(1));
-            customer.setTime(result.getString(2));
-            customer.setId(result.getInt(3));
-            customer.setFName(result.getString(4));
-            customer.setLName(result.getString(5));
-            customer.setStreet(result.getString(6));
-            customer.setCity(result.getString(7));
-            customer.setDistrict(result.getString(8));
-            customer.setDob(result.getString(9));
-            customer.setNicNo(result.getString(10));
-            customer.setLicNo(result.getString(11));
-            customer.setTeleNo(result.getString(12));
-            customer.setWhatsappNo(result.getString(13));
-            customer.setViberNo(result.getString(14));
-            customer.setEmail(result.getString(15));
-            customer.setIssueDate(result.getString(16));
-            customer.setExpireDate(result.getString(17));
-            customer.setPoints(result.getDouble(18));
+                customer.setDate(result.getString(1));
+                customer.setTime(result.getString(2));
+                customer.setId(result.getInt(3));
+                customer.setFName(result.getString(4));
+                customer.setLName(result.getString(5));
+                customer.setStreet(result.getString(6));
+                customer.setCity(result.getString(7));
+                customer.setDistrict(result.getString(8));
+                customer.setDob(result.getString(9));
+                customer.setNicNo(result.getString(10));
+                customer.setLicNo(result.getString(11));
+                customer.setTeleNo(result.getString(12));
+                customer.setWhatsappNo(result.getString(13));
+                customer.setViberNo(result.getString(14));
+                customer.setEmail(result.getString(15));
+                customer.setIssueDate(result.getString(16));
+                customer.setExpireDate(result.getString(17));
+                customer.setPoints(result.getDouble(18));
 
-            customerList.add(customer);
+                customerList.add(customer);
 
+            }
+            System.out.println("Customer List Loaded : " + customerList.size());
         }
-        System.out.println("Customer List Loaded : " + customerList.size());
     }
 
 

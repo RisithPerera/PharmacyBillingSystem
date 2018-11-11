@@ -6,13 +6,10 @@
 package com.base.client.impl;
 
 import com.base.client.UserClient;
-import com.base.file.FileManager;
+import com.base.connection.BaseConnection;
 import com.base.list.ListConnection;
-import com.manifest.Data;
-import com.manifest.Symbol;
 import com.model.child.User;
-import java.io.IOException;
-import java.util.Collections;
+import java.sql.*;
 import javafx.collections.ObservableList;
 
 /**
@@ -23,11 +20,9 @@ public class UserClientImpl implements UserClient{
     
     private static UserClientImpl userClientImpl;
     private static ObservableList<User> userList;
-    private static ObservableList<String> recordList;
 
     public UserClientImpl() {
         userList = (ObservableList<User>) ListConnection.getInstance().getUserList();
-        recordList = (ObservableList<String>) ListConnection.getInstance().getRecordList();
     }
 
     public static UserClientImpl getInstance() {
@@ -38,35 +33,39 @@ public class UserClientImpl implements UserClient{
     }
       
     @Override
-    public boolean add(User user) throws IOException {
-        if(userList.isEmpty()){
-            userList.add(0, user);
-        }else{
-            userList.add(userList.size()-1, user);
-        }  
-        return FileManager.getInstance().addRecord(user, Data.USER);
-    }
+    public boolean add(User user) throws SQLException, ClassNotFoundException {
+        userList.add(user);
+        String query = "Insert into user value (?,?,?,?,?,?)";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        PreparedStatement state = conn.prepareStatement(query);
 
-    @Override
-    public boolean update(User user) throws IOException {
-        int index = userList.indexOf(user.getId());
-        userList.set(index, user);
-        return writeAll();
-    }
+        state.setObject(1, user.getDate());
+        state.setObject(2, user.getTime());
+        state.setObject(3, user.getId());
+        state.setObject(4, user.getUserName());
+        state.setObject(5, user.getPassword());
+        state.setObject(6, user.getType());
 
-    @Override
-    public boolean delete(User user) throws IOException {
-        userList.remove(user);
-        return writeAll();
-    }
-
-    @Override
-    public User search(String id) throws IOException {
-        User user = new User();
-        user.setId(id);
-        if (userList.isEmpty()) {
-            readAll();
+        if (state.executeUpdate() > 0) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public boolean update(User user){
+        return true;
+    }
+
+
+    @Override
+    public boolean delete(int id) {
+        return true;
+    }
+
+    @Override
+    public User search(int id){
+        User user = new User(id);
         int index = userList.indexOf(user);
         if (index != -1) {
             return userList.get(index);
@@ -75,56 +74,41 @@ public class UserClientImpl implements UserClient{
     }
 
     @Override
-    public ObservableList<User> getAll() throws IOException {
-        if (userList.isEmpty()) {
-            readAll();
-        }
+    public ObservableList<User> getAll(){
         return userList;
     }
 
     @Override
-    public boolean readAll() throws IOException {
-        FileManager.getInstance().readAllRecords(Data.USER);
-        userList.clear();
-        for (String line : recordList) {
-            String[] parts = line.split(Symbol.SPLIT_SYMBOL_EXPRESSION);
-            User user = new User(parts[0], 
-                                 parts[1], 
-                                 parts[2], 
-                                 parts[3], 
-                                 parts[4], 
-                                 parts[5]);
+    public void loadAll() throws SQLException, ClassNotFoundException {
+        String query = "Select * from user";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        Statement state = conn.createStatement();
+        ResultSet result = state.executeQuery(query);
+
+        while (result.next()) {
+            User user = new User();
+
+            user.setDate(result.getString(1));
+            user.setTime(result.getString(2));
+            user.setId(result.getInt(3));
+            user.setUserName(result.getString(4));
+            user.setPassword(result.getString(5));
+            user.setType(result.getInt(6));
+
             userList.add(user);
         }
-        Collections.sort(userList);
-        return true;
+        System.out.println("Customer Order List Loaded : " + userList.size());
     }
 
     @Override
-    public boolean writeAll() throws IOException {
-        recordList.clear();
-        if (userList != null) {
-            Collections.sort(userList);
-            userList.stream().forEach((customDTO) -> {
-                recordList.add(customDTO.toString());
-            });
-            FileManager.getInstance().writeAllRecords(Data.USER);
+    public int getNextId() throws SQLException, ClassNotFoundException {
+        String query = "Select userId+1 from user order by 1 desc limit 1";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        PreparedStatement state = conn.prepareStatement(query);
+        ResultSet result = state.executeQuery();
+        if (result.next()) {
+            return result.getInt(3);
         }
-        return true;
-    }
-    
-     @Override
-    public long getNextId() {
-         if (userList.isEmpty()) {
-            return 0;
-        }
-        long preIndex = -1;
-        for (User user : userList) {
-            if(Long.parseLong(user.getId()) - preIndex > 1){
-                break;
-            }
-            preIndex = Long.parseLong(user.getId());
-        }
-        return preIndex+1;
+        return 0;
     }
 }
