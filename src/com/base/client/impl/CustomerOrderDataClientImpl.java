@@ -8,14 +8,11 @@ package com.base.client.impl;
 import com.base.client.CustomerOrderDataClient;
 import com.base.connection.BaseConnection;
 import com.base.list.ListConnection;
-import com.manifest.Data;
-import com.manifest.Symbol;
 import com.model.child.CustomerOrder;
 import com.model.child.CustomerOrderData;
-import java.io.IOException;
+
 import java.sql.*;
-import java.util.Collections;
-import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
 
 /**
@@ -26,12 +23,12 @@ public class CustomerOrderDataClientImpl implements CustomerOrderDataClient{
     
     private static CustomerOrderDataClientImpl customerOrderDataClientImpl;
     private static ObservableList<CustomerOrder> customerOrderList;
-    private static ObservableList<CustomerOrderData> customerOrderDataList;
+    private static ObservableList<CustomerOrderData> dataList;
 
 
     private CustomerOrderDataClientImpl() {
         customerOrderList =  (ObservableList<CustomerOrder>) ListConnection.getInstance().getCustomerOrderList();
-        customerOrderDataList = (ObservableList<CustomerOrderData>) ListConnection.getInstance().getCustomerOrderDataList();
+        dataList = (ObservableList<CustomerOrderData>) ListConnection.getInstance().getCustomerOrderDataList();
 
     }
    
@@ -41,24 +38,22 @@ public class CustomerOrderDataClientImpl implements CustomerOrderDataClient{
         }
         return customerOrderDataClientImpl;
     }
-    
-  
+
     @Override
-    public boolean add(CustomerOrderData customerOrderData) throws SQLException, ClassNotFoundException {
-        customerOrderDataList.add(customerOrderData);
+    public boolean add(ObservableList<CustomerOrderData> customerOrderDataList) throws SQLException, ClassNotFoundException {
         String query = "Insert into customerOrderData values(?,?,?,?)";
         Connection conn = BaseConnection.createConnection().getConnection();
-        PreparedStatement state = conn.prepareStatement(query);
+        int count = 0;
+        for (CustomerOrderData customerOrderData : customerOrderDataList) {
+            PreparedStatement state = conn.prepareStatement(query);
 
-        state.setObject(1, customerOrderData.getId());
-        state.setObject(2, customerOrderData.getCustomerOrder().getId());
-        state.setObject(3, customerOrderData.getAmount());
-        state.setObject(4, customerOrderData.getDiscount());
-
-        if (state.executeUpdate() > 0){
-            return true;
+            state.setObject(1, customerOrderData.getId());
+            state.setObject(2, customerOrderData.getCustomerOrder().getId());
+            state.setObject(3, customerOrderData.getAmount());
+            state.setObject(4, customerOrderData.getDiscount());
+            count += state.executeUpdate();
         }
-        return false;
+        return count == customerOrderDataList.size();
     }
 
     @Override
@@ -74,16 +69,16 @@ public class CustomerOrderDataClientImpl implements CustomerOrderDataClient{
     @Override
     public CustomerOrderData search(int id) {
         CustomerOrderData customerOrderData = new CustomerOrderData(id);
-        int index = customerOrderDataList.indexOf(customerOrderData);
+        int index = dataList.indexOf(customerOrderData);
         if (index != -1) {
-            return customerOrderDataList.get(index);
+            return dataList.get(index);
         }
         return null;
     }
 
     @Override
     public ObservableList<CustomerOrderData> getAll(){
-        return customerOrderDataList;
+        return dataList;
     }
 
     @Override
@@ -104,11 +99,10 @@ public class CustomerOrderDataClientImpl implements CustomerOrderDataClient{
             customerOrderData.setAmount(result.getDouble(3));
             customerOrderData.setRate(result.getInt(4));
 
-            if(customerOrderData.getCustomerOrder() !=  null) customerOrderDataList.add(customerOrderData);
+            if(customerOrderData.getCustomerOrder() !=  null) dataList.add(customerOrderData);
         }
-        System.out.println("Customer Order Data List Loaded : " + customerOrderDataList.size());
+        System.out.println("Customer Order Data List Loaded : " + dataList.size());
     }
-
 
     @Override
     public int getNextId() throws SQLException, ClassNotFoundException {

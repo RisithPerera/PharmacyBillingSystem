@@ -13,6 +13,8 @@ import com.base.list.ListConnection;
 import com.model.child.Customer;
 import com.model.child.CustomerOrder;
 import java.sql.*;
+
+import com.model.child.CustomerOrderData;
 import javafx.collections.ObservableList;
 
 /**
@@ -38,32 +40,33 @@ public class CustomerOrderClientImpl implements CustomerOrderClient{
     }
     
     @Override
-    public boolean add(CustomerOrder customerOrder) throws SQLException, ClassNotFoundException {
+    public boolean add(CustomerOrder customerOrder, ObservableList<CustomerOrderData> customerOrderDataList) throws SQLException, ClassNotFoundException {
         customerOrderList.add(customerOrder);
         String query = "Insert into customerOrder values(?,?,?,?)";
         Connection conn = BaseConnection.createConnection().getConnection();
-        PreparedStatement state = conn.prepareStatement(query);
+        conn.setAutoCommit(false);
+        try{
+            PreparedStatement state = conn.prepareStatement(query);
+            state.setObject(1, customerOrder.getDate());
+            state.setObject(2, customerOrder.getTime());
+            state.setObject(3, customerOrder.getId());
+            state.setObject(4, customerOrder.getCustomer().getId());
 
-        state.setObject(1, customerOrder.getDate());
-        state.setObject(2, customerOrder.getTime());
-        state.setObject(3, customerOrder.getId());
-        state.setObject(4, customerOrder.getCustomer().getId());
-
-        if (state.executeUpdate() > 0) {
-            return true;
+            if(state.executeUpdate()>0){
+                if(CustomerOrderDataClientImpl.getInstance().add(customerOrderDataList)){
+                    conn.commit();
+                    return true;
+                }
+                conn.rollback();
+                return false;
+            }
+            conn.rollback();
+            return false;
+        }finally{
+            conn.setAutoCommit(true);
         }
-        return false;
     }
 
-    @Override
-    public boolean update(CustomerOrder customerOrder){
-        return true;
-    }
-
-    @Override
-    public boolean delete(int id){
-        return true;
-    }
 
     @Override
     public CustomerOrder search(int id)  {

@@ -35,31 +35,39 @@ public class CustomerClientImpl implements CustomerClient {
         customerList.add(customer);
         String query = "Insert into customer values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         Connection conn = BaseConnection.createConnection().getConnection();
-        PreparedStatement state = conn.prepareStatement(query);
+        conn.setAutoCommit(false);
+        try {
+            PreparedStatement state = conn.prepareStatement(query);
 
-        state.setObject(1, customer.getDate());
-        state.setObject(2, customer.getTime());
-        state.setObject(3, customer.getId());
-        state.setObject(4, customer.getFName());
-        state.setObject(5, customer.getLName());
-        state.setObject(6, customer.getStreet());
-        state.setObject(7, customer.getCity());
-        state.setObject(8, customer.getDistrict());
-        state.setObject(9, customer.getDob());
-        state.setObject(10, customer.getNicNo());
-        state.setObject(11, customer.getLicNo());
-        state.setObject(12, customer.getTeleNo());
-        state.setObject(13, customer.getWhatsappNo());
-        state.setObject(14, customer.getViberNo());
-        state.setObject(15, customer.getEmail());
-        state.setObject(16, customer.getIssueDate());
-        state.setObject(17, customer.getExpireDate());
-        state.setObject(18, customer.getPoints());
+            state.setObject(1, customer.getDate());
+            state.setObject(2, customer.getTime());
+            state.setObject(3, customer.getId());
+            state.setObject(4, customer.getFName());
+            state.setObject(5, customer.getLName());
+            state.setObject(6, customer.getStreet());
+            state.setObject(7, customer.getCity());
+            state.setObject(8, customer.getDistrict());
+            state.setObject(9, customer.getDob());
+            state.setObject(10, customer.getNicNo());
+            state.setObject(11, customer.getLicNo());
+            state.setObject(12, customer.getTeleNo());
+            state.setObject(13, customer.getWhatsappNo());
+            state.setObject(14, customer.getViberNo());
+            state.setObject(15, customer.getEmail());
+            state.setObject(16, customer.getIssueDate());
+            state.setObject(17, customer.getExpireDate());
+            state.setObject(18, customer.getPoints());
 
-        if (state.executeUpdate() > 0) {
-            return true;
+            if(state.executeUpdate()>0){
+                conn.commit();
+                return true;
+            }
+            conn.rollback();
+            return false;
+
+        }finally{
+            conn.setAutoCommit(true);
         }
-        return false;
     }
 
     @Override
@@ -93,22 +101,22 @@ public class CustomerClientImpl implements CustomerClient {
             PreparedStatement state = conn.prepareStatement(query);
             state.setObject(1, customer.getDate());
             state.setObject(2, customer.getTime());
-            state.setObject(3, customer.getId());
-            state.setObject(4, customer.getFName());
-            state.setObject(5, customer.getLName());
-            state.setObject(6, customer.getStreet());
-            state.setObject(7, customer.getCity());
-            state.setObject(8, customer.getDistrict());
-            state.setObject(9, customer.getDob());
-            state.setObject(10, customer.getNicNo());
-            state.setObject(11, customer.getLicNo());
-            state.setObject(12, customer.getTeleNo());
-            state.setObject(13, customer.getWhatsappNo());
-            state.setObject(14, customer.getViberNo());
-            state.setObject(15, customer.getEmail());
-            state.setObject(16, customer.getIssueDate());
-            state.setObject(17, customer.getExpireDate());
-            state.setObject(18, customer.getPoints());
+            state.setObject(3, customer.getFName());
+            state.setObject(4, customer.getLName());
+            state.setObject(5, customer.getStreet());
+            state.setObject(6, customer.getCity());
+            state.setObject(7, customer.getDistrict());
+            state.setObject(8, customer.getDob());
+            state.setObject(9, customer.getNicNo());
+            state.setObject(10, customer.getLicNo());
+            state.setObject(11, customer.getTeleNo());
+            state.setObject(12, customer.getWhatsappNo());
+            state.setObject(13, customer.getViberNo());
+            state.setObject(14, customer.getEmail());
+            state.setObject(15, customer.getIssueDate());
+            state.setObject(16, customer.getExpireDate());
+            state.setObject(17, customer.getPoints());
+            state.setObject(18, customer.getId());
             if (state.executeUpdate() > 0) {
                 conn.commit();
                 return true;

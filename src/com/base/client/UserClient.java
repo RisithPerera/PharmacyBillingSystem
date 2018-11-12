@@ -5,13 +5,22 @@
  */
 package com.base.client;
 
-
-import com.base.client.superb.SuperClient;
 import com.model.child.User;
+import javafx.collections.ObservableList;
+
+import java.sql.SQLException;
 
 
 /**
  *
  * @author RISITH-PC
  */
-public interface UserClient extends SuperClient<User>{}
+public interface UserClient{
+    public boolean add(User user) throws SQLException, ClassNotFoundException;
+    public boolean update(User user) throws SQLException, ClassNotFoundException;
+    public User search(int id);
+    public boolean delete(int id) throws SQLException, ClassNotFoundException;
+    public ObservableList<User> getAll();
+    public void loadAll() throws SQLException, ClassNotFoundException;
+    public int getNextId() throws SQLException, ClassNotFoundException;
+}

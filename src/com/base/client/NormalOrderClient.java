@@ -5,19 +5,20 @@
  */
 package com.base.client;
 
-
-import com.base.client.superb.SuperClient;
 import com.model.child.NormalOrder;
 import com.model.child.NormalOrderData;
 import javafx.collections.ObservableList;
-
-import java.io.IOException;
-
+import java.sql.SQLException;
 
 /**
  *
  * @author RISITH-PC
  */
-public interface NormalOrderClient extends SuperClient<NormalOrder>{
+public interface NormalOrderClient{
 
+    public boolean add(NormalOrder normalOrder, ObservableList<NormalOrderData> normalOrderDataList) throws SQLException, ClassNotFoundException;
+    public NormalOrder search(int id);
+    public ObservableList<NormalOrder> getAll();
+    public void loadAll() throws SQLException, ClassNotFoundException;
+    public int getNextId() throws SQLException, ClassNotFoundException;
 }

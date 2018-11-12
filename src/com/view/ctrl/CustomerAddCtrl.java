@@ -150,7 +150,7 @@ public class CustomerAddCtrl implements Initializable {
         selectedCustomer = new Customer();
         selectedCustomer.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));   
         selectedCustomer.setTime(new SimpleDateFormat("hh:mm:ss").format(new Date()));    
-        selectedCustomer.setId(Long.toString(getInstance().getNextId()));
+        selectedCustomer.setId(Integer.parseInt(idText.getText()));
         selectedCustomer.setFName(fNameText.getText()); 
         selectedCustomer.setLName(lNameText.getText());      
         selectedCustomer.setStreet(streetText.getText());    

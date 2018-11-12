@@ -5,17 +5,15 @@
  */
 package com.base.client;
 
-
-import com.base.client.superb.SuperClient;
-import com.model.child.CustomerOrder;
 import com.model.child.CustomerOrderData;
-import java.io.IOException;
+import java.sql.SQLException;
 import javafx.collections.ObservableList;
-
-
 
 /**
  *
  * @author RISITH-PC
  */
-public interface CustomerOrderDataClient extends SuperClient<CustomerOrderData>{}
+public interface CustomerOrderDataClient{
+    public boolean add(ObservableList<CustomerOrderData> customerOrderDataList) throws SQLException, ClassNotFoundException;
+    public ObservableList<CustomerOrderData> search(int cusOrderId);
+}

@@ -17,6 +17,7 @@ import com.model.child.CustomerOrder;
 import com.model.child.CustomerOrderData;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -167,13 +168,11 @@ public class CustomerOrderAddCtrl implements Initializable {
     
     private void searchCustomer() {
         customerTempList = FXCollections.observableArrayList();
-        try {
-            for (Customer customer : CustomerClientImpl.getInstance().getAll()) {
-                customerTempList.add(new CustomerTemp(customer));
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(CustomerOrderAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
+
+        for (Customer customer : CustomerClientImpl.getInstance().getAll()) {
+            customerTempList.add(new CustomerTemp(customer));
         }
+
         customerListView.setItems(customerTempList);
         searchCustomerText.textProperty().addListener(
             new ChangeListener() {
@@ -217,14 +216,17 @@ public class CustomerOrderAddCtrl implements Initializable {
             }else{
                 customerText.setText(selectedCustomer.getIdFullName());
             }
-            idText.setText(Long.toString(CustomerOrderClientImpl.getInstance().getNextId()));
+            idText.setText(Integer.toString(CustomerOrderClientImpl.getInstance().getNextId()));
             customerListView.getSelectionModel().select(null);
             updateOrderDataView();
-        } catch (IOException ex) {
-            Logger.getLogger(CustomerOrderAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
-        }       
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
-    
+
+    /*
     public void prepareCustomerOrderUpdateView(CustomerOrder customerOrder) {  
         try {
             controllerType = State.ControllerType.CUSTOMER_ORDER_UPDATE;
@@ -232,29 +234,32 @@ public class CustomerOrderAddCtrl implements Initializable {
             customerOrderDataList = CustomerOrderDataClientImpl.getInstance().getOrderData(customerOrder);
             selectedCustomerOrder = customerOrder;
             selectedCustomer = customerOrder.getCustomer();           
-            idText.setText(customerOrder.getId());
+            idText.setText(Integer.toString(customerOrder.getId()));
             customerText.setText(customerOrder.getCustomer().getIdFullName());
             updateOrderDataView();
         } catch (IOException ex) {
             Logger.getLogger(CustomerOrderAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    */
+
     private void createCustomerOrderAdd() {
         try { 
             selectedCustomerOrder.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
             selectedCustomerOrder.setTime(new SimpleDateFormat("hh:mm:ss").format(new Date()));
-            selectedCustomerOrder.setId(Long.toString(CustomerOrderClientImpl.getInstance().getNextId()));
+            selectedCustomerOrder.setId(CustomerOrderClientImpl.getInstance().getNextId());
             selectedCustomerOrder.setCustomer(selectedCustomer);
             CustomerOrderClientImpl.getInstance().add(selectedCustomerOrder);
             CustomerOrderDataClientImpl.getInstance().addOrderData(customerOrderDataList);
             MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.ADD, Data.CUSTOMER_ORDER));
-            
-        } catch (IOException ex) {
-            Logger.getLogger(CustomerOrderAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
+    /*
     private void createCustomerOrderUpdate() {
          try {
             selectedCustomerOrder.setCustomer(selectedCustomer);
@@ -268,7 +273,8 @@ public class CustomerOrderAddCtrl implements Initializable {
             Logger.getLogger(CustomerOrderAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-       
+    */
+
     private void clearFields(){
         customerOrderDataList.clear();
         selectedCustomerOrder = null;
@@ -341,5 +347,4 @@ public class CustomerOrderAddCtrl implements Initializable {
             return customer.getId()+": "+customer.getFullName() +": "+ customer.getDistrict() ;
         }       
     }
-    
 }
