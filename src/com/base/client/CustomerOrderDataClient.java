@@ -5,6 +5,7 @@
  */
 package com.base.client;
 
+import com.model.child.CustomerOrder;
 import com.model.child.CustomerOrderData;
 import java.sql.SQLException;
 import javafx.collections.ObservableList;
@@ -15,5 +16,6 @@ import javafx.collections.ObservableList;
  */
 public interface CustomerOrderDataClient{
     public boolean add(ObservableList<CustomerOrderData> customerOrderDataList) throws SQLException, ClassNotFoundException;
-    public ObservableList<CustomerOrderData> search(int cusOrderId) throws SQLException, ClassNotFoundException;
+
+    public ObservableList<CustomerOrderData> search(CustomerOrder customerOrder) throws SQLException, ClassNotFoundException;
 }

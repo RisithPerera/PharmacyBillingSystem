@@ -57,17 +57,15 @@ public class NormalOrderDataClientImpl implements NormalOrderDataClient{
     }
 
     @Override
-    public ObservableList<NormalOrderData> search(int norOrderId) throws SQLException, ClassNotFoundException {
-        String query = "Select * from normalOrderData where norOrderId = ?";
+    public ObservableList<NormalOrderData> search(NormalOrder normalOrder) throws SQLException, ClassNotFoundException {
+        String query = "Select * from normalOrderData where norOrderId = " + normalOrder.getId();
         Connection conn = BaseConnection.createConnection().getConnection();
         Statement state = conn.createStatement();
         ResultSet result = state.executeQuery(query);
 
-        NormalOrder normalOrder = NormalOrderClientImpl.getInstance().search(norOrderId);
         normalOrderDataList.clear();
         while (result.next()) {
             NormalOrderData normalOrderData = new NormalOrderData();
-
             normalOrderData.setNormalOrder(normalOrder);
             normalOrderData.setAmount(result.getDouble("amount"));
             normalOrderData.setRate(result.getInt("rate"));

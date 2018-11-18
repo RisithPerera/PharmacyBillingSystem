@@ -20,7 +20,7 @@ public class CustomerClientImpl implements CustomerClient {
     private static ObservableList<Customer> customerList;
 
     private CustomerClientImpl() {
-        customerList = (ObservableList<Customer>) ListConnection.getInstance().getCustomerList();
+        customerList = ListConnection.getInstance().getCustomerList();
     }
 
     public static CustomerClientImpl getInstance() {
@@ -32,7 +32,6 @@ public class CustomerClientImpl implements CustomerClient {
 
     @Override
     public boolean add(Customer customer) throws SQLException, ClassNotFoundException {
-        customerList.add(customer);
         String query = "Insert into customer values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         Connection conn = BaseConnection.createConnection().getConnection();
         conn.setAutoCommit(false);
@@ -59,6 +58,7 @@ public class CustomerClientImpl implements CustomerClient {
             state.setObject(18, customer.getPoints());
 
             if(state.executeUpdate()>0){
+                customerList.add(customer);
                 conn.commit();
                 return true;
             }
@@ -72,9 +72,6 @@ public class CustomerClientImpl implements CustomerClient {
 
     @Override
     public boolean update(Customer customer) throws SQLException, ClassNotFoundException {
-        int index = customerList.indexOf(customer);
-        if (index != -1) customerList.set(index, customer);
-
         String query =  "Update customer set " +
                         "recordDate = ?, " +
                         "recordTime = ?, " +
@@ -118,6 +115,8 @@ public class CustomerClientImpl implements CustomerClient {
             state.setObject(17, customer.getPoints());
             state.setObject(18, customer.getId());
             if (state.executeUpdate() > 0) {
+                int index = customerList.indexOf(customer);
+                if (index != -1) customerList.set(index, customer);
                 conn.commit();
                 return true;
             }
@@ -130,14 +129,17 @@ public class CustomerClientImpl implements CustomerClient {
 
     @Override
     public boolean delete(int id) throws SQLException, ClassNotFoundException {
-        Customer customer = new Customer(id);
-        customerList.remove(customer);
-
         String query = "Delete from customer where cusId = ?";
         Connection conn = BaseConnection.createConnection().getConnection();
         PreparedStatement state = conn.prepareStatement(query);
         state.setObject(1, id);
-        return state.executeUpdate() > 0;
+        if (state.executeUpdate() > 0) {
+            Customer customer = new Customer(id);
+            customerList.remove(customer);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -157,39 +159,38 @@ public class CustomerClientImpl implements CustomerClient {
 
     @Override
     public void loadAll() throws SQLException, ClassNotFoundException {
-        if(customerList.isEmpty()) {
-            String query = "Select * from customer";
-            Connection conn = BaseConnection.createConnection().getConnection();
-            Statement state = conn.createStatement();
-            ResultSet result = state.executeQuery(query);
+        customerList.clear();
+        String query = "Select * from customer";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        Statement state = conn.createStatement();
+        ResultSet result = state.executeQuery(query);
 
-            while (result.next()) {
-                Customer customer = new Customer();
+        while (result.next()) {
+            Customer customer = new Customer();
 
-                customer.setDate(result.getString(1));
-                customer.setTime(result.getString(2));
-                customer.setId(result.getInt(3));
-                customer.setFName(result.getString(4));
-                customer.setLName(result.getString(5));
-                customer.setStreet(result.getString(6));
-                customer.setCity(result.getString(7));
-                customer.setDistrict(result.getString(8));
-                customer.setDob(result.getString(9));
-                customer.setNicNo(result.getString(10));
-                customer.setLicNo(result.getString(11));
-                customer.setTeleNo(result.getString(12));
-                customer.setWhatsappNo(result.getString(13));
-                customer.setViberNo(result.getString(14));
-                customer.setEmail(result.getString(15));
-                customer.setIssueDate(result.getString(16));
-                customer.setExpireDate(result.getString(17));
-                customer.setPoints(result.getDouble(18));
+            customer.setDate(result.getString(1));
+            customer.setTime(result.getString(2));
+            customer.setId(result.getInt(3));
+            customer.setFName(result.getString(4));
+            customer.setLName(result.getString(5));
+            customer.setStreet(result.getString(6));
+            customer.setCity(result.getString(7));
+            customer.setDistrict(result.getString(8));
+            customer.setDob(result.getString(9));
+            customer.setNicNo(result.getString(10));
+            customer.setLicNo(result.getString(11));
+            customer.setTeleNo(result.getString(12));
+            customer.setWhatsappNo(result.getString(13));
+            customer.setViberNo(result.getString(14));
+            customer.setEmail(result.getString(15));
+            customer.setIssueDate(result.getString(16));
+            customer.setExpireDate(result.getString(17));
+            customer.setPoints(result.getDouble(18));
 
-                customerList.add(customer);
+            customerList.add(customer);
 
-            }
-            System.out.println("Customer List Loaded : " + customerList.size());
         }
+        System.out.println("Customer List Loaded : " + customerList.size());
     }
 
 

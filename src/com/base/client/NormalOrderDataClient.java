@@ -5,6 +5,7 @@
  */
 package com.base.client;
 
+import com.model.child.NormalOrder;
 import com.model.child.NormalOrderData;
 import java.sql.SQLException;
 import javafx.collections.ObservableList;
@@ -15,5 +16,6 @@ import javafx.collections.ObservableList;
  */
 public interface NormalOrderDataClient{
     public boolean add(ObservableList<NormalOrderData> normalOrderDataList) throws SQLException, ClassNotFoundException;
-    public  ObservableList<NormalOrderData> search(int norOrderId) throws SQLException, ClassNotFoundException;
+
+    public ObservableList<NormalOrderData> search(NormalOrder normalOrder) throws SQLException, ClassNotFoundException;
 }

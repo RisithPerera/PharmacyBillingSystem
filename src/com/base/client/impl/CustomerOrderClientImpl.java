@@ -28,8 +28,8 @@ public class CustomerOrderClientImpl implements CustomerOrderClient{
     private static ObservableList<CustomerOrder> customerOrderList;
 
     private CustomerOrderClientImpl() {
-        customerList = (ObservableList<Customer>) ListConnection.getInstance().getCustomerList();
-        customerOrderList = (ObservableList<CustomerOrder>) ListConnection.getInstance().getCustomerOrderList();
+        customerList = ListConnection.getInstance().getCustomerList();
+        customerOrderList = ListConnection.getInstance().getCustomerOrderList();
     }
   
     public static CustomerOrderClientImpl getInstance() {
@@ -89,6 +89,7 @@ public class CustomerOrderClientImpl implements CustomerOrderClient{
 
     @Override
     public void loadAll() throws SQLException, ClassNotFoundException {
+        customerOrderList.clear();
         String query = "Select * from customerOrder";
         Connection conn = BaseConnection.createConnection().getConnection();
         Statement state = conn.createStatement();

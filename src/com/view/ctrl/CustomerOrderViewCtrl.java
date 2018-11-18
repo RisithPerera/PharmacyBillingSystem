@@ -7,6 +7,7 @@ package com.view.ctrl;
 
 import com.base.client.impl.CustomerOrderClientImpl;
 import com.base.client.impl.CustomerOrderDataClientImpl;
+import com.base.list.ListConnection;
 import com.manifest.Data;
 import com.manifest.Message;
 import com.manifest.View;
@@ -52,12 +53,18 @@ public class CustomerOrderViewCtrl implements Initializable {
 
     @FXML
     private TableView<CustomerOrderData> orderDataTable;
-    
-    @FXML
-    private TableColumn<CustomerOrder, String> dateCol, timeCol,idCol, customerCol;
 
     @FXML
-    private TableColumn<CustomerOrderData, String> amountCol, rateCol, discountCol, remainderCol;
+    private TableColumn<CustomerOrder, Integer> idCol;
+
+    @FXML
+    private TableColumn<CustomerOrder, String> dateCol, timeCol, customerCol;
+
+    @FXML
+    private TableColumn<CustomerOrderData, Integer> rateCol;
+
+    @FXML
+    private TableColumn<CustomerOrderData, Double> amountCol, discountCol, remainderCol;
 
     @FXML
     private Label totalAmountLabel,finalPriceLabel,discountLabel,pointsLabel;
@@ -77,30 +84,27 @@ public class CustomerOrderViewCtrl implements Initializable {
         timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         customerCol.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-        
+
         amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         rateCol.setCellValueFactory(new PropertyValueFactory<>("rate"));
         discountCol.setCellValueFactory(new PropertyValueFactory<>("discount"));
         remainderCol.setCellValueFactory(new PropertyValueFactory<>("remainder"));
-        
+
         yearCombo.getItems().setAll(Data.YEARS);
         monthCombo.getItems().setAll(Data.MONTHS);
         dayCombo.getItems().setAll(Data.DAYS);
-        
-        yearCombo.getSelectionModel().select(null);       
+
+        yearCombo.getSelectionModel().select(null);
         monthCombo.setDisable(true);
-        monthCombo.getSelectionModel().select(null);       
+        monthCombo.getSelectionModel().select(null);
         dayCombo.setDisable(true);
         dayCombo.getSelectionModel().select(null);
-        
+
+        customerOrderList = ListConnection.getInstance().getCustomerOrderList();
+
          searchCustomerText.textProperty().addListener(
-            new ChangeListener() {
-                @Override
-                public void changed(ObservableValue observable, Object oldVal, Object newVal) {
-                    updateTableDataBySearch((String) oldVal, (String)newVal);
-                }
-            }
-        );
+                 (ChangeListener) (observable, oldVal, newVal) -> updateTableDataBySearch((String) oldVal, (String) newVal)
+         );
          
         setTableSelection();
         updateOrderDataView();
@@ -119,8 +123,8 @@ public class CustomerOrderViewCtrl implements Initializable {
 
     @FXML
     void viewAllBtnEvent(ActionEvent event) {
-        System.out.println("view all");
         orderTable.getItems().setAll(customerOrderList);
+        orderTable.getSelectionModel().clearSelection();
         yearCombo.getSelectionModel().select(null);
         monthCombo.getSelectionModel().select(null);
         monthCombo.setDisable(true);
@@ -172,13 +176,14 @@ public class CustomerOrderViewCtrl implements Initializable {
     }
 
     private void setTableSelection() {
-         customerOrderList = CustomerOrderClientImpl.getInstance().getAll();
          orderTable.getItems().setAll(customerOrderList);
          orderTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-             if (newSelection != oldSelection) {
+             if (newSelection != null && newSelection != oldSelection) {
                  try {
-                     customerOrderDataList = CustomerOrderDataClientImpl.getInstance().search(newSelection.getId());
-                     updateOrderDataView();
+                     customerOrderDataList = CustomerOrderDataClientImpl.getInstance().search(newSelection);
+                     if (customerOrderDataList != null) {
+                         updateOrderDataView();
+                     }
                  } catch (SQLException e) {
                      MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(),e.getMessage());
                  } catch (ClassNotFoundException e) {
@@ -234,6 +239,22 @@ public class CustomerOrderViewCtrl implements Initializable {
                 }
             }
         }catch(NullPointerException exception){}
+    }
+
+    private void updateOrderDataView() {
+        double amount = 0, discount = 0, points = 0;
+        if (customerOrderDataList != null) {
+            for (CustomerOrderData customerOrderData : customerOrderDataList) {
+                amount += customerOrderData.getAmount();
+                discount += customerOrderData.getDiscount();
+                points += customerOrderData.getPoints();
+            }
+            orderDataTable.getItems().setAll(customerOrderDataList);
+        }
+        totalAmountLabel.setText(": " + Double.toString(amount));
+        finalPriceLabel.setText(": " + Double.toString(amount - discount));
+        discountLabel.setText(": " + Double.toString(discount));
+        pointsLabel.setText(": " + Double.toString(points));
     }
 
      /*private void setTableMenu() {
@@ -308,19 +329,4 @@ public class CustomerOrderViewCtrl implements Initializable {
             });
     }*/
 
-    private void updateOrderDataView(){
-        double amount = 0, discount = 0, points = 0;
-        if(customerOrderDataList != null){
-            for (CustomerOrderData customerOrderData : customerOrderDataList) {
-                amount += customerOrderData.getAmount();
-                discount += customerOrderData.getDiscount();
-                points += customerOrderData.getPoints();
-            }
-            orderDataTable.getItems().setAll(customerOrderDataList);
-        }       
-        totalAmountLabel.setText(": " +Double.toString(amount));
-        finalPriceLabel.setText(": " +Double.toString(amount-discount));
-        discountLabel.setText(": " +Double.toString(discount));
-        pointsLabel.setText(": " +Double.toString(points));       
-    }
 }

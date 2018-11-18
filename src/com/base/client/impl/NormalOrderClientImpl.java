@@ -74,6 +74,7 @@ public class NormalOrderClientImpl implements NormalOrderClient{
         NormalOrder normalOrder = new NormalOrder(id);
         int index = normalOrderList.indexOf(normalOrder);
         if (index != -1) {
+            System.out.println(normalOrderList.get(index));
             return normalOrderList.get(index);
         }
         return null;
@@ -86,6 +87,7 @@ public class NormalOrderClientImpl implements NormalOrderClient{
 
     @Override
     public void loadAll() throws SQLException, ClassNotFoundException {
+        normalOrderList.clear();
         String query = "Select * from normalOrder";
         Connection conn = BaseConnection.createConnection().getConnection();
         Statement state = conn.createStatement();

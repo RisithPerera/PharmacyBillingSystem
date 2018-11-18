@@ -99,7 +99,7 @@ public class CustomerOrder extends SuperModel implements Comparable<CustomerOrde
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof CustomerOrder) {
-            return ((Customer)obj).getId() == this.getId();
+            return ((CustomerOrder) obj).getId() == this.getId();
         }
         return false;
     }

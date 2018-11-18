@@ -52,17 +52,15 @@ public class CustomerOrderDataClientImpl implements CustomerOrderDataClient{
     }
 
     @Override
-    public ObservableList<CustomerOrderData> search(int cusOrderId) throws SQLException, ClassNotFoundException {
-        String query = "Select * from customerOrderData where cusOrderId = ?";
+    public ObservableList<CustomerOrderData> search(CustomerOrder customerOrder) throws SQLException, ClassNotFoundException {
+        String query = "Select * from customerOrderData where cusOrderId = " + customerOrder.getId();
         Connection conn = BaseConnection.createConnection().getConnection();
         Statement state = conn.createStatement();
         ResultSet result = state.executeQuery(query);
 
-        CustomerOrder customerOrder = CustomerOrderClientImpl.getInstance().search(cusOrderId);
         customerOrderDataList.clear();
         while (result.next()) {
             CustomerOrderData customerOrderData = new CustomerOrderData();
-
             customerOrderData.setCustomerOrder(customerOrder);
             customerOrderData.setAmount(result.getDouble("amount"));
             customerOrderData.setRate(result.getInt("rate"));

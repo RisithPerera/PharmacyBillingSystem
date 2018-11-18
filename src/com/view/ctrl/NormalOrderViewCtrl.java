@@ -154,14 +154,17 @@ public class NormalOrderViewCtrl implements Initializable {
         normalOrderList = NormalOrderClientImpl.getInstance().getAll();
         orderTable.getItems().setAll(normalOrderList);
         orderTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != oldSelection) {
+            if (newSelection != null && newSelection != oldSelection) {
                 try {
-                    normalOrderDataList = NormalOrderDataClientImpl.getInstance().search(newSelection.getId());
+                    normalOrderDataList = NormalOrderDataClientImpl.getInstance().search(newSelection);
                     updateOrderDataView();
                 } catch (SQLException e) {
+                    System.out.println("view eception");
                     MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(), e.getMessage());
+                    e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(), e.getMessage());
+                    e.printStackTrace();
                 }
             }
         });
@@ -179,7 +182,23 @@ public class NormalOrderViewCtrl implements Initializable {
         }catch(NullPointerException exception){}
     }
 
-    /*private void setTableMenu() {
+    private void updateOrderDataView(){
+        double amount = 0, discount = 0, points = 0;
+        if(normalOrderDataList != null){
+            for (NormalOrderData customerOrderData : normalOrderDataList) {
+                amount += customerOrderData.getAmount();
+                discount += customerOrderData.getDiscount();
+                points += customerOrderData.getPoints();
+            }
+            orderDataTable.getItems().setAll(normalOrderDataList);
+        }       
+        totalAmountLabel.setText(": " +Double.toString(amount));
+        finalPriceLabel.setText(": " +Double.toString(amount-discount));
+        discountLabel.setText(": " +Double.toString(discount));
+        pointsLabel.setText(": " +Double.toString(points));       
+    }
+
+     /*private void setTableMenu() {
         orderTable.setRowFactory((TableView<NormalOrder> tableView) -> {
             TableRow<NormalOrder> row = new TableRow<>();
             ContextMenu contextMenu = new ContextMenu();
@@ -250,21 +269,5 @@ public class NormalOrderViewCtrl implements Initializable {
                 return row ;
             });
     }*/
-
-    private void updateOrderDataView(){
-        double amount = 0, discount = 0, points = 0;
-        if(normalOrderDataList != null){
-            for (NormalOrderData customerOrderData : normalOrderDataList) {
-                amount += customerOrderData.getAmount();
-                discount += customerOrderData.getDiscount();
-                points += customerOrderData.getPoints();
-            }
-            orderDataTable.getItems().setAll(normalOrderDataList);
-        }       
-        totalAmountLabel.setText(": " +Double.toString(amount));
-        finalPriceLabel.setText(": " +Double.toString(amount-discount));
-        discountLabel.setText(": " +Double.toString(discount));
-        pointsLabel.setText(": " +Double.toString(points));       
-    }
 
 }

@@ -34,7 +34,6 @@ public class UserClientImpl implements UserClient{
       
     @Override
     public boolean add(User user) throws SQLException, ClassNotFoundException {
-        userList.add(user);
         String query = "Insert into user value (?,?,?,?,?,?)";
         Connection conn = BaseConnection.createConnection().getConnection();
         conn.setAutoCommit(false);
@@ -49,6 +48,7 @@ public class UserClientImpl implements UserClient{
             state.setObject(6, user.getType());
 
             if(state.executeUpdate()>0){
+                userList.add(user);
                 conn.commit();
                 return true;
             }
@@ -61,8 +61,7 @@ public class UserClientImpl implements UserClient{
 
     @Override
     public boolean update(User user) throws SQLException, ClassNotFoundException {
-        int index = userList.indexOf(user);
-        if (index != -1) userList.set(index, user);
+
 
         String query =  "Update user set    " +
                         "    recordDate = ?," +
@@ -83,6 +82,8 @@ public class UserClientImpl implements UserClient{
             state.setObject(5, user.getType());
             state.setObject(6, user.getId());
             if (state.executeUpdate() > 0) {
+                int index = userList.indexOf(user);
+                if (index != -1) userList.set(index, user);
                 conn.commit();
                 return true;
             }
@@ -123,6 +124,7 @@ public class UserClientImpl implements UserClient{
 
     @Override
     public void loadAll() throws SQLException, ClassNotFoundException {
+        userList.clear();
         String query = "Select * from user";
         Connection conn = BaseConnection.createConnection().getConnection();
         Statement state = conn.createStatement();

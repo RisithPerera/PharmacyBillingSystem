@@ -70,7 +70,6 @@ public class Main extends Application {
     }
     
     public static void initializeDatabase(){
-        System.out.println("master test");
         try {
             CustomerClientImpl.getInstance().loadAll();
             CustomerOrderClientImpl.getInstance().loadAll();
