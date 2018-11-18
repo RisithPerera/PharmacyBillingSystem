@@ -70,6 +70,7 @@ public class Main extends Application {
     }
     
     public static void initializeDatabase(){
+        System.out.println("sql Database commit");
         try {
             CustomerClientImpl.getInstance().loadAll();
             CustomerOrderClientImpl.getInstance().loadAll();
