@@ -6,44 +6,26 @@
 
 package com.model.child;
 
-
 import com.manifest.Symbol;
 import com.model.superb.SuperModel;
-import java.util.Objects;
-
 
 /**
  *
  * @author RISITH-PC
  */
 
-public class NormalOrderData extends SuperModel implements Comparable<NormalOrderData>{
-   
-    private int id;
+public class NormalOrderData extends SuperModel {
+
     private NormalOrder normalOrder;
     private double amount;
     private int rate;
 
-    public NormalOrderData() {
-    }
+    public NormalOrderData() {}
 
-    public NormalOrderData(int id) {
-        this.id = id;
-    }
-
-    public NormalOrderData(int id, NormalOrder normalOrder, double amount, int rate) {
-        this.id = id;
+    public NormalOrderData(NormalOrder normalOrder, double amount, int rate) {
         this.normalOrder = normalOrder;
         this.amount = amount;
         this.rate = rate;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public NormalOrder getNormalOrder() {
@@ -74,7 +56,6 @@ public class NormalOrderData extends SuperModel implements Comparable<NormalOrde
         this.rate = rate;
     }
 
-
     //-------------------------- Calculatons ----------------------------------//
    
     public double getDiscount() {
@@ -93,12 +74,12 @@ public class NormalOrderData extends SuperModel implements Comparable<NormalOrde
     
     @Override
     public String toString() {
-        return  getId()               + Symbol.SPLIT +
-                getNormalOrderId()    + Symbol.SPLIT +
+        return  getNormalOrderId()    + Symbol.SPLIT +
                 getAmount()           + Symbol.SPLIT +
                 getRate();              
     }      
-    
+
+    /*
     @Override
     public int compareTo(NormalOrderData dto) {
         boolean logic = dto.getId() > this.getId();
@@ -117,5 +98,7 @@ public class NormalOrderData extends SuperModel implements Comparable<NormalOrde
     public int hashCode() {        
         int hash = Objects.hashCode(String.format("%05d", this.getId()));
         return hash;
-    }  
+    }
+
+    */
 }

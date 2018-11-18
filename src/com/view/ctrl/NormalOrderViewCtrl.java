@@ -8,29 +8,25 @@ package com.view.ctrl;
 import com.base.client.impl.NormalOrderClientImpl;
 import com.base.client.impl.NormalOrderDataClientImpl;
 import com.manifest.Data;
-import com.manifest.Message;
 import com.manifest.View;
 import com.model.child.NormalOrder;
 import com.model.child.NormalOrderData;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -87,7 +83,7 @@ public class NormalOrderViewCtrl implements Initializable {
          
         setTableSelection();
         updateOrderDataView();
-        setTableMenu();
+        //setTableMenu();
     }    
 
     @FXML
@@ -153,96 +149,22 @@ public class NormalOrderViewCtrl implements Initializable {
         
         updateTableDataByDate(dateCompare);
     }
-    
-    private void setTableMenu() {
-        orderTable.setRowFactory((TableView<NormalOrder> tableView) -> {
-            TableRow<NormalOrder> row = new TableRow<>();
-            ContextMenu contextMenu = new ContextMenu();
-            MenuItem updateMenu = new MenuItem("Update Purchase");
-            MenuItem deleteMenu = new MenuItem("Delete Purchase");
-            
-            deleteMenu.setOnAction((ActionEvent event) -> {                         
-                try {
-                    NormalOrder selectedNormalOrder = orderTable.getSelectionModel().getSelectedItem();
-                    NormalOrderDataClientImpl.getInstance().deleteOrderData(selectedNormalOrder);
-                    if (NormalOrderClientImpl.getInstance().delete(selectedNormalOrder)){                
-                        System.out.println("Safely Deleted....!");
-                    }else{
-                        System.out.println("Delete Unsucessfull...!");
-                    }
-                    orderTable.getItems().remove(selectedNormalOrder);
-                } catch (IOException ex) {
-                    Logger.getLogger(CustomerViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
-            
-            updateMenu.setOnAction((ActionEvent event) -> {                                        
-                NormalOrder selectedNormalOrder = orderTable.getSelectionModel().getSelectedItem();
-                try{    
-                    NormalOrderAddCtrl ctrl = (NormalOrderAddCtrl) MainCtrl.getInstance().showContent(String.format(View.PATH, View.NORMAL_ORDER_ADD));
-                    ctrl.prepareNormalOrderUpdateView(selectedNormalOrder);
-                } catch (IOException ex) {
-                    Logger.getLogger(CustomerViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
-            
-            contextMenu.getItems().addAll(deleteMenu,updateMenu);
-
-            row.contextMenuProperty().bind(
-                Bindings.when(row.emptyProperty())
-                        .then((ContextMenu)null)
-                        .otherwise(contextMenu)
-                );
-                return row ;
-            });
-        
-        orderDataTable.setRowFactory((TableView<NormalOrderData> tableView) -> {
-            TableRow<NormalOrderData> row = new TableRow<>();
-            ContextMenu contextMenu = new ContextMenu();
-            MenuItem deleteMenu = new MenuItem("Delete Item");
-            
-            deleteMenu.setOnAction((ActionEvent event) -> {                         
-                try {
-                    NormalOrderData selectedNormalOrderData = orderDataTable.getSelectionModel().getSelectedItem();                   
-                    if (NormalOrderDataClientImpl.getInstance().delete(selectedNormalOrderData)){
-                        normalOrderDataList.remove(selectedNormalOrderData);
-                        updateOrderDataView();
-                        MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.DELETE, Data.NORMAL_ORDER_DATA));
-                    }else{
-                        MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.UNSUCESS, Data.NORMAL_ORDER_DATA));
-                    }                   
-                } catch (IOException ex) {
-                    Logger.getLogger(CustomerViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
-            
-            contextMenu.getItems().addAll(deleteMenu);
-            row.contextMenuProperty().bind(
-                Bindings.when(row.emptyProperty())
-                        .then((ContextMenu)null)
-                        .otherwise(contextMenu)
-                );
-                return row ;
-            });
-    }
 
     private void setTableSelection() {
-         try {
-            normalOrderList = NormalOrderClientImpl.getInstance().getAll();
-            orderTable.getItems().setAll(normalOrderList);
-            orderTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-                if (newSelection != oldSelection) {
-                    try {
-                        normalOrderDataList = NormalOrderDataClientImpl.getInstance().getOrderData(newSelection);
-                        updateOrderDataView();
-                    } catch (IOException ex) {
-                        Logger.getLogger(NormalOrderViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+        normalOrderList = NormalOrderClientImpl.getInstance().getAll();
+        orderTable.getItems().setAll(normalOrderList);
+        orderTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != oldSelection) {
+                try {
+                    normalOrderDataList = NormalOrderDataClientImpl.getInstance().search(newSelection.getId());
+                    updateOrderDataView();
+                } catch (SQLException e) {
+                    MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(), e.getMessage());
+                } catch (ClassNotFoundException e) {
+                    MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(), e.getMessage());
                 }
-            });
-        } catch (IOException ex) {
-            Logger.getLogger(NormalOrderViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            }
+        });
     }
     
     private void updateTableDataByDate(String dateCompare){
@@ -256,7 +178,79 @@ public class NormalOrderViewCtrl implements Initializable {
             }
         }catch(NullPointerException exception){}
     }
-    
+
+    /*private void setTableMenu() {
+        orderTable.setRowFactory((TableView<NormalOrder> tableView) -> {
+            TableRow<NormalOrder> row = new TableRow<>();
+            ContextMenu contextMenu = new ContextMenu();
+            MenuItem updateMenu = new MenuItem("Update Purchase");
+            MenuItem deleteMenu = new MenuItem("Delete Purchase");
+
+            deleteMenu.setOnAction((ActionEvent event) -> {
+                try {
+                    NormalOrder selectedNormalOrder = orderTable.getSelectionModel().getSelectedItem();
+                    NormalOrderDataClientImpl.getInstance().deleteOrderData(selectedNormalOrder);
+                    if (NormalOrderClientImpl.getInstance().delete(selectedNormalOrder)){
+                        System.out.println("Safely Deleted....!");
+                    }else{
+                        System.out.println("Delete Unsucessfull...!");
+                    }
+                    orderTable.getItems().remove(selectedNormalOrder);
+                } catch (IOException ex) {
+                    Logger.getLogger(CustomerViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+
+            updateMenu.setOnAction((ActionEvent event) -> {
+                NormalOrder selectedNormalOrder = orderTable.getSelectionModel().getSelectedItem();
+                try{
+                    NormalOrderAddCtrl ctrl = (NormalOrderAddCtrl) MainCtrl.getInstance().showContent(String.format(View.PATH, View.NORMAL_ORDER_ADD));
+                    ctrl.prepareNormalOrderUpdateView(selectedNormalOrder);
+                } catch (IOException ex) {
+                    Logger.getLogger(CustomerViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+
+            contextMenu.getItems().addAll(deleteMenu,updateMenu);
+
+            row.contextMenuProperty().bind(
+                Bindings.when(row.emptyProperty())
+                        .then((ContextMenu)null)
+                        .otherwise(contextMenu)
+                );
+                return row ;
+            });
+
+        orderDataTable.setRowFactory((TableView<NormalOrderData> tableView) -> {
+            TableRow<NormalOrderData> row = new TableRow<>();
+            ContextMenu contextMenu = new ContextMenu();
+            MenuItem deleteMenu = new MenuItem("Delete Item");
+
+            deleteMenu.setOnAction((ActionEvent event) -> {
+                try {
+                    NormalOrderData selectedNormalOrderData = orderDataTable.getSelectionModel().getSelectedItem();
+                    if (NormalOrderDataClientImpl.getInstance().delete(selectedNormalOrderData)){
+                        normalOrderDataList.remove(selectedNormalOrderData);
+                        updateOrderDataView();
+                        MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.DELETE, Data.NORMAL_ORDER_DATA));
+                    }else{
+                        MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.UNSUCESS, Data.NORMAL_ORDER_DATA));
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(CustomerViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+
+            contextMenu.getItems().addAll(deleteMenu);
+            row.contextMenuProperty().bind(
+                Bindings.when(row.emptyProperty())
+                        .then((ContextMenu)null)
+                        .otherwise(contextMenu)
+                );
+                return row ;
+            });
+    }*/
+
     private void updateOrderDataView(){
         double amount = 0, discount = 0, points = 0;
         if(normalOrderDataList != null){

@@ -6,6 +6,7 @@
 package com.base.client;
 
 
+import com.model.child.Customer;
 import com.model.child.CustomerOrder;
 import com.model.child.CustomerOrderData;
 import javafx.collections.ObservableList;

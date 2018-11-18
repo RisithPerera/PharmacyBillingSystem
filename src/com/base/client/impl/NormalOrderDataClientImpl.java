@@ -10,6 +10,8 @@ import com.base.client.NormalOrderDataClient;
 import com.base.connection.BaseConnection;
 import com.base.list.ListConnection;
 import com.manifest.Data;
+import com.model.child.CustomerOrder;
+import com.model.child.CustomerOrderData;
 import com.model.child.NormalOrder;
 import com.model.child.NormalOrderData;
 import java.io.IOException;
@@ -39,43 +41,43 @@ public class NormalOrderDataClientImpl implements NormalOrderDataClient{
     }
     
     @Override
-    public boolean add(NormalOrderData normalOrderData) throws SQLException, ClassNotFoundException {
-        normalOrderDataList.add(normalOrderData);
-        String query = "Insert into normalOrderData values(?,?,?,?)";
+    public boolean add(ObservableList<NormalOrderData> normalOrderDataList) throws SQLException, ClassNotFoundException {
+        String query = "Insert into normalOrderData values(?,?,?)";
         Connection conn = BaseConnection.createConnection().getConnection();
-        PreparedStatement state = conn.prepareStatement(query);
+        int count = 0;
+        for (NormalOrderData normalOrderData : normalOrderDataList) {
+            PreparedStatement state = conn.prepareStatement(query);
 
-        state.setObject(1, normalOrderData.getId());
-        state.setObject(2, normalOrderData.getNormalOrder().getId());
-        state.setObject(3, normalOrderData.getAmount());
-        state.setObject(4, normalOrderData.getDiscount());
+            state.setObject(1, normalOrderData.getNormalOrder().getId());
+            state.setObject(2, normalOrderData.getAmount());
+            state.setObject(3, normalOrderData.getRate());
+            count += state.executeUpdate();
+        }
+        return count == normalOrderDataList.size();
+    }
 
-        if (state.executeUpdate() > 0){
-            return true;
+    @Override
+    public ObservableList<NormalOrderData> search(int norOrderId) throws SQLException, ClassNotFoundException {
+        String query = "Select * from normalOrderData where norOrderId = ?";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        Statement state = conn.createStatement();
+        ResultSet result = state.executeQuery(query);
+
+        NormalOrder normalOrder = NormalOrderClientImpl.getInstance().search(norOrderId);
+        normalOrderDataList.clear();
+        while (result.next()) {
+            NormalOrderData normalOrderData = new NormalOrderData();
+
+            normalOrderData.setNormalOrder(normalOrder);
+            normalOrderData.setAmount(result.getDouble("amount"));
+            normalOrderData.setRate(result.getInt("rate"));
+            normalOrderDataList.add(normalOrderData);
         }
-        return false;
+        System.out.println("Normal Order Data List Loaded : " + normalOrderDataList.size());
+        return  normalOrderDataList;
     }
-    
-    @Override
-    public boolean update(NormalOrderData normalOrderData) {
-        return true;
-    }
-    
-    @Override
-    public boolean delete(int id){
-        return true;
-    }
-    
-    @Override
-    public NormalOrderData search(int id){
-        NormalOrderData normalOrderData = new NormalOrderData(id);
-        int index = normalOrderDataList.indexOf(normalOrderData);
-        if (index != -1) {
-            return normalOrderDataList.get(index);
-        }
-        return null;
-    }
-    
+
+    /*
     @Override
     public ObservableList<NormalOrderData> getAll() {
         return normalOrderDataList;
@@ -126,4 +128,5 @@ public class NormalOrderDataClientImpl implements NormalOrderDataClient{
         }
         return 0;
     }
+    */
 }

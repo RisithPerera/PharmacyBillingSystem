@@ -15,5 +15,5 @@ import javafx.collections.ObservableList;
  */
 public interface NormalOrderDataClient{
     public boolean add(ObservableList<NormalOrderData> normalOrderDataList) throws SQLException, ClassNotFoundException;
-    public  ObservableList<NormalOrderData> search(int norOrderId);
+    public  ObservableList<NormalOrderData> search(int norOrderId) throws SQLException, ClassNotFoundException;
 }

@@ -37,30 +37,73 @@ public class UserClientImpl implements UserClient{
         userList.add(user);
         String query = "Insert into user value (?,?,?,?,?,?)";
         Connection conn = BaseConnection.createConnection().getConnection();
-        PreparedStatement state = conn.prepareStatement(query);
+        conn.setAutoCommit(false);
+        try {
+            PreparedStatement state = conn.prepareStatement(query);
 
-        state.setObject(1, user.getDate());
-        state.setObject(2, user.getTime());
-        state.setObject(3, user.getId());
-        state.setObject(4, user.getUserName());
-        state.setObject(5, user.getPassword());
-        state.setObject(6, user.getType());
+            state.setObject(1, user.getDate());
+            state.setObject(2, user.getTime());
+            state.setObject(3, user.getId());
+            state.setObject(4, user.getUserName());
+            state.setObject(5, user.getPassword());
+            state.setObject(6, user.getType());
 
-        if (state.executeUpdate() > 0) {
-            return true;
+            if(state.executeUpdate()>0){
+                conn.commit();
+                return true;
+            }
+            conn.rollback();
+            return false;
+        }finally{
+            conn.setAutoCommit(true);
         }
-        return false;
     }
 
     @Override
-    public boolean update(User user){
-        return true;
+    public boolean update(User user) throws SQLException, ClassNotFoundException {
+        int index = userList.indexOf(user);
+        if (index != -1) userList.set(index, user);
+
+        String query =  "Update user set    " +
+                        "    recordDate = ?," +
+                        "    recordTime = ?," +
+                        "    userName   = ?," +
+                        "    password   = ? " +
+                        "    userType   = ?," +
+                        "where userId = ?;";
+
+        Connection conn = BaseConnection.createConnection().getConnection();
+        conn.setAutoCommit(false);
+        try {
+            PreparedStatement state = conn.prepareStatement(query);
+            state.setObject(1, user.getDate());
+            state.setObject(2, user.getTime());
+            state.setObject(3, user.getUserName());
+            state.setObject(4, user.getPassword());
+            state.setObject(5, user.getType());
+            state.setObject(6, user.getId());
+            if (state.executeUpdate() > 0) {
+                conn.commit();
+                return true;
+            }
+            conn.rollback();
+            return false;
+        } finally {
+            conn.setAutoCommit(true);
+        }
     }
 
 
     @Override
-    public boolean delete(int id) {
-        return true;
+    public boolean delete(int id) throws SQLException, ClassNotFoundException {
+        User user = new User(id);
+        userList.remove(user);
+
+        String query = "Delete from user where userId = ?";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        PreparedStatement state = conn.prepareStatement(query);
+        state.setObject(1, id);
+        return state.executeUpdate() > 0;
     }
 
     @Override
@@ -97,7 +140,7 @@ public class UserClientImpl implements UserClient{
 
             userList.add(user);
         }
-        System.out.println("Customer Order List Loaded : " + userList.size());
+        System.out.println("User List Loaded : " + userList.size());
     }
 
     @Override

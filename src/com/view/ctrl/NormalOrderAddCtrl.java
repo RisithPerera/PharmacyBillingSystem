@@ -6,6 +6,7 @@
 package com.view.ctrl;
 
 import com.base.client.impl.CustomerClientImpl;
+import com.base.client.impl.CustomerOrderClientImpl;
 import com.base.client.impl.NormalOrderClientImpl;
 import com.base.client.impl.NormalOrderDataClientImpl;
 import com.manifest.Data;
@@ -17,6 +18,7 @@ import com.model.child.NormalOrderData;
 import com.model.child.NormalOrder;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -99,10 +101,9 @@ public class NormalOrderAddCtrl implements Initializable {
     @FXML
     private void addBtnEvent(ActionEvent event) {
         NormalOrderData normalOrderData = new NormalOrderData();
-        normalOrderData.setId("0");
         normalOrderData.setNormalOrder(selectedNormalOrder);
-        normalOrderData.setAmount(amountText.getText());
-        normalOrderData.setRate(discountChoice.getSelectionModel().getSelectedItem());
+        normalOrderData.setAmount(Double.parseDouble(amountText.getText()));
+        normalOrderData.setRate(Integer.parseInt(discountChoice.getSelectionModel().getSelectedItem()));
         
         normalOrderDataList.add(normalOrderData);
         updateOrderDataView();
@@ -113,13 +114,7 @@ public class NormalOrderAddCtrl implements Initializable {
     @FXML
     private void printBtnEvent(ActionEvent event) {
         try {
-            switch(controllerType){
-                case NORMAL_ORDER_ADD :
-                    createNormalOrderAdd();
-                    break;
-                case NORMAL_ORDER_UPDATE :
-                    createNormalOrderUpdate();
-            }
+            createNormalOrderAdd();
             clearFields();
             MainCtrl.getInstance().showContent(String.format(View.PATH, View.NORMAL_ORDER_VIEW));
         } catch (IOException ex) {
@@ -145,15 +140,21 @@ public class NormalOrderAddCtrl implements Initializable {
     }
      
     public void prepareNormalOrderAddView(){
-        controllerType = State.ControllerType.NORMAL_ORDER_ADD;
-        printBtn.setText("Print");
-        normalOrderDataList = FXCollections.observableArrayList();            
-        selectedNormalOrder = new NormalOrder();
-        idText.setText(Long.toString(NormalOrderClientImpl.getInstance().getNextId()));
-        updateOrderDataView();
+        try {
+            controllerType = State.ControllerType.NORMAL_ORDER_ADD;
+            printBtn.setText("Print");
+            normalOrderDataList = FXCollections.observableArrayList();
+            selectedNormalOrder = new NormalOrder();
+            idText.setText(Integer.toString(NormalOrderClientImpl.getInstance().getNextId()));
+            updateOrderDataView();
+        } catch (SQLException e) {
+            MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(),e.getMessage());
+        } catch (ClassNotFoundException e) {
+            MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(),e.getMessage());
+        }
     }
     
-    public void prepareNormalOrderUpdateView(NormalOrder normalOrder) {  
+    /*public void prepareNormalOrderUpdateView(NormalOrder normalOrder) {
         try {
             controllerType = State.ControllerType.NORMAL_ORDER_UPDATE;
             printBtn.setText("Update");
@@ -164,29 +165,35 @@ public class NormalOrderAddCtrl implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(NormalOrderAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
     
     private void createNormalOrderAdd() {
         try {            
             selectedNormalOrder.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
             selectedNormalOrder.setTime(new SimpleDateFormat("hh:mm:ss").format(new Date()));
-            selectedNormalOrder.setId(Long.toString(NormalOrderClientImpl.getInstance().getNextId()));
-            NormalOrderClientImpl.getInstance().add(selectedNormalOrder);
-            NormalOrderDataClientImpl.getInstance().addOrderData(normalOrderDataList);
-            MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.ADD, Data.NORMAL_ORDER));           
-        } catch (IOException ex) {
-            Logger.getLogger(NormalOrderAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            selectedNormalOrder.setId(NormalOrderClientImpl.getInstance().getNextId());
+            if (NormalOrderClientImpl.getInstance().add(selectedNormalOrder, normalOrderDataList)) {
+                MessageBoxViewCtrl.display(Message.TITLE, String.format(Message.ADD, Data.NORMAL_ORDER));
+            } else {
+                MessageBoxViewCtrl.display(Message.TITLE, String.format(Message.UNSUCESS, Data.NORMAL_ORDER));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(), e.getMessage());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(), e.getMessage());
         }
     }
 
-    private void createNormalOrderUpdate() {
+   /* private void createNormalOrderUpdate() {
          try {
             NormalOrderDataClientImpl.getInstance().updateOrderData(selectedNormalOrder, normalOrderDataList);
             MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.UPDATE, Data.NORMAL_ORDER));
         } catch (IOException ex) {
             Logger.getLogger(NormalOrderAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
        
     private void clearFields(){
         normalOrderDataList.clear();

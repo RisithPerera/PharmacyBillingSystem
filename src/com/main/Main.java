@@ -18,6 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.view.ctrl.MessageBoxViewCtrl;
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +39,7 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage){
-        System.out.println("SQL Databse");
+
         timeTask = new Task<Void>() {
             @Override 
             public Void call() throws InterruptedException {
@@ -71,9 +73,7 @@ public class Main extends Application {
         try {
             CustomerClientImpl.getInstance().loadAll();
             CustomerOrderClientImpl.getInstance().loadAll();
-            CustomerOrderDataClientImpl.getInstance().loadAll();
             NormalOrderClientImpl.getInstance().loadAll();
-            NormalOrderDataClientImpl.getInstance().loadAll();
             UserClientImpl.getInstance().loadAll();
         } catch (SQLException e) {
             e.printStackTrace();

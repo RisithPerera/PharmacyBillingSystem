@@ -74,8 +74,18 @@ public class MessageBoxViewCtrl implements Initializable {
         stage.toFront();
         stage.show();
     }
- 
-  
+
+
+    public static void displayError(String t, String m){
+        System.out.println(t + "-" + m);
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(t);
+        alert.setContentText(m);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.setAlwaysOnTop(true);
+        stage.toFront();
+        stage.show();
+    }
     
     public static class Distance{
         static double deltaX,deltaY;

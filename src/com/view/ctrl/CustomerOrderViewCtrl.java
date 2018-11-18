@@ -15,6 +15,7 @@ import com.model.child.CustomerOrder;
 import com.model.child.CustomerOrderData;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -103,7 +104,7 @@ public class CustomerOrderViewCtrl implements Initializable {
          
         setTableSelection();
         updateOrderDataView();
-        setTableMenu();
+        //setTableMenu();
     }    
 
     @FXML
@@ -169,96 +170,22 @@ public class CustomerOrderViewCtrl implements Initializable {
         
         updateTableDataByDate(dateCompare);
     }
-    
-    private void setTableMenu() {
-        orderTable.setRowFactory((TableView<CustomerOrder> tableView) -> {
-            TableRow<CustomerOrder> row = new TableRow<>();
-            ContextMenu contextMenu = new ContextMenu();
-            MenuItem updateMenu = new MenuItem("Update Purchase");
-            MenuItem deleteMenu = new MenuItem("Delete Purchase");
-            
-            deleteMenu.setOnAction((ActionEvent event) -> {                         
-                try {
-                    CustomerOrder selectedCustomerOrder = orderTable.getSelectionModel().getSelectedItem();
-                    CustomerOrderDataClientImpl.getInstance().deleteOrderData(selectedCustomerOrder);
-                    if (CustomerOrderClientImpl.getInstance().delete(selectedCustomerOrder)){                
-                        System.out.println("Safely Deleted....!");
-                    }else{
-                        System.out.println("Delete Unsucessfull...!");
-                    }
-                    orderTable.getItems().remove(selectedCustomerOrder);
-                } catch (IOException ex) {
-                    Logger.getLogger(CustomerViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
-            
-            updateMenu.setOnAction((ActionEvent event) -> {                                        
-                CustomerOrder selectedCustomerOrder = orderTable.getSelectionModel().getSelectedItem();
-                try{    
-                    CustomerOrderAddCtrl ctrl = (CustomerOrderAddCtrl) MainCtrl.getInstance().showContent(String.format(View.PATH, View.CUSTOMER_ORDER_ADD));
-                    ctrl.prepareCustomerOrderUpdateView(selectedCustomerOrder);
-                } catch (IOException ex) {
-                    Logger.getLogger(CustomerViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
-            
-            contextMenu.getItems().addAll(deleteMenu,updateMenu);
-
-            row.contextMenuProperty().bind(
-                Bindings.when(row.emptyProperty())
-                        .then((ContextMenu)null)
-                        .otherwise(contextMenu)
-                );
-                return row ;
-            });
-        
-        orderDataTable.setRowFactory((TableView<CustomerOrderData> tableView) -> {
-            TableRow<CustomerOrderData> row = new TableRow<>();
-            ContextMenu contextMenu = new ContextMenu();
-            MenuItem deleteMenu = new MenuItem("Delete Item");
-            
-            deleteMenu.setOnAction((ActionEvent event) -> {                         
-                try {
-                    CustomerOrderData selectedCustomerOrderData = orderDataTable.getSelectionModel().getSelectedItem();                   
-                    if (CustomerOrderDataClientImpl.getInstance().delete(selectedCustomerOrderData)){                     
-                        customerOrderDataList.remove(selectedCustomerOrderData);
-                        updateOrderDataView();
-                        MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.DELETE, Data.CUSTOMER_ORDER_DATA));
-                    }else{
-                        MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.UNSUCESS, Data.CUSTOMER_ORDER_DATA));
-                    }                   
-                } catch (IOException ex) {
-                    Logger.getLogger(CustomerViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
-            
-            contextMenu.getItems().addAll(deleteMenu);
-            row.contextMenuProperty().bind(
-                Bindings.when(row.emptyProperty())
-                        .then((ContextMenu)null)
-                        .otherwise(contextMenu)
-                );
-                return row ;
-            });
-    }
 
     private void setTableSelection() {
-         try {
-            customerOrderList = CustomerOrderClientImpl.getInstance().getAll();
-            orderTable.getItems().setAll(customerOrderList);
-            orderTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-                if (newSelection != oldSelection) {
-                    try {
-                        customerOrderDataList = CustomerOrderDataClientImpl.getInstance().getOrderData(newSelection);
-                        updateOrderDataView();
-                    } catch (IOException ex) {
-                        Logger.getLogger(CustomerOrderViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            });
-        } catch (IOException ex) {
-            Logger.getLogger(CustomerOrderViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         customerOrderList = CustomerOrderClientImpl.getInstance().getAll();
+         orderTable.getItems().setAll(customerOrderList);
+         orderTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+             if (newSelection != oldSelection) {
+                 try {
+                     customerOrderDataList = CustomerOrderDataClientImpl.getInstance().search(newSelection.getId());
+                     updateOrderDataView();
+                 } catch (SQLException e) {
+                     MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(),e.getMessage());
+                 } catch (ClassNotFoundException e) {
+                     MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(),e.getMessage());
+                 }
+             }
+         });
     }
     
     private void updateTableDataByDate(String dateCompare){
@@ -302,13 +229,85 @@ public class CustomerOrderViewCtrl implements Initializable {
             orderTable.getItems().setAll(customerOrderList);
             Iterator<CustomerOrder> iterator = orderTable.getItems().iterator();
             while(iterator.hasNext()){  
-                if(! iterator.next().getFullName().contains(customer.getFullName())){
+                if(!(iterator.next().getId() == customer.getId())){
                     iterator.remove();
                 }
             }
         }catch(NullPointerException exception){}
     }
-    
+
+     /*private void setTableMenu() {
+        orderTable.setRowFactory((TableView<CustomerOrder> tableView) -> {
+            TableRow<CustomerOrder> row = new TableRow<>();
+            ContextMenu contextMenu = new ContextMenu();
+            MenuItem updateMenu = new MenuItem("Update Purchase");
+            MenuItem deleteMenu = new MenuItem("Delete Purchase");
+
+            deleteMenu.setOnAction((ActionEvent event) -> {
+                try {
+                    CustomerOrder selectedCustomerOrder = orderTable.getSelectionModel().getSelectedItem();
+                    CustomerOrderDataClientImpl.getInstance().deleteOrderData(selectedCustomerOrder);
+                    if (CustomerOrderClientImpl.getInstance().delete(selectedCustomerOrder)){
+                        System.out.println("Safely Deleted....!");
+                    }else{
+                        System.out.println("Delete Unsucessfull...!");
+                    }
+                    orderTable.getItems().remove(selectedCustomerOrder);
+                } catch (IOException ex) {
+                    Logger.getLogger(CustomerViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+
+            updateMenu.setOnAction((ActionEvent event) -> {
+                CustomerOrder selectedCustomerOrder = orderTable.getSelectionModel().getSelectedItem();
+                try{
+                    CustomerOrderAddCtrl ctrl = (CustomerOrderAddCtrl) MainCtrl.getInstance().showContent(String.format(View.PATH, View.CUSTOMER_ORDER_ADD));
+                    ctrl.prepareCustomerOrderUpdateView(selectedCustomerOrder);
+                } catch (IOException ex) {
+                    Logger.getLogger(CustomerViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+
+            contextMenu.getItems().addAll(deleteMenu,updateMenu);
+
+            row.contextMenuProperty().bind(
+                Bindings.when(row.emptyProperty())
+                        .then((ContextMenu)null)
+                        .otherwise(contextMenu)
+                );
+                return row ;
+            });
+
+        orderDataTable.setRowFactory((TableView<CustomerOrderData> tableView) -> {
+            TableRow<CustomerOrderData> row = new TableRow<>();
+            ContextMenu contextMenu = new ContextMenu();
+            MenuItem deleteMenu = new MenuItem("Delete Item");
+
+            deleteMenu.setOnAction((ActionEvent event) -> {
+                try {
+                    CustomerOrderData selectedCustomerOrderData = orderDataTable.getSelectionModel().getSelectedItem();
+                    if (CustomerOrderDataClientImpl.getInstance().delete(selectedCustomerOrderData)){
+                        customerOrderDataList.remove(selectedCustomerOrderData);
+                        updateOrderDataView();
+                        MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.DELETE, Data.CUSTOMER_ORDER_DATA));
+                    }else{
+                        MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.UNSUCESS, Data.CUSTOMER_ORDER_DATA));
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(CustomerViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+
+            contextMenu.getItems().addAll(deleteMenu);
+            row.contextMenuProperty().bind(
+                Bindings.when(row.emptyProperty())
+                        .then((ContextMenu)null)
+                        .otherwise(contextMenu)
+                );
+                return row ;
+            });
+    }*/
+
     private void updateOrderDataView(){
         double amount = 0, discount = 0, points = 0;
         if(customerOrderDataList != null){

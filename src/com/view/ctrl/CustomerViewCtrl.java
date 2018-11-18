@@ -12,6 +12,7 @@ import com.manifest.View;
 import com.model.child.Customer;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,23 +57,21 @@ public class CustomerViewCtrl implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
-            idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-            nameCol.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-            addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
-            ageCol.setCellValueFactory(new PropertyValueFactory<>("age"));
-            identityCol.setCellValueFactory(new PropertyValueFactory<>("identity"));
-            contactsCol.setCellValueFactory(new PropertyValueFactory<>("contacts"));
-            periodCol.setCellValueFactory(new PropertyValueFactory<>("period"));
-            pointsCol.setCellValueFactory(new PropertyValueFactory<>("points"));
-            
-            customerList = CustomerClientImpl.getInstance().getAll();
-            customerTable.getItems().setAll(customerList);
+
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        ageCol.setCellValueFactory(new PropertyValueFactory<>("age"));
+        identityCol.setCellValueFactory(new PropertyValueFactory<>("identity"));
+        contactsCol.setCellValueFactory(new PropertyValueFactory<>("contacts"));
+        periodCol.setCellValueFactory(new PropertyValueFactory<>("period"));
+        pointsCol.setCellValueFactory(new PropertyValueFactory<>("points"));
+
+        customerList = CustomerClientImpl.getInstance().getAll();
+        customerTable.getItems().setAll(customerList);
             // TODO
-        } catch (IOException ex) {
-            Logger.getLogger(CustomerViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
         
         searchCustomerText.textProperty().addListener(
             new ChangeListener() {
@@ -152,14 +151,16 @@ public class CustomerViewCtrl implements Initializable {
             deleteMenu.setOnAction((ActionEvent event) -> {                         
                 try {
                     Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();                    
-                    if (CustomerClientImpl.getInstance().delete(selectedCustomer)) {
+                    if (CustomerClientImpl.getInstance().delete(selectedCustomer.getId())) {
                         MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.DELETE, Data.CUSTOMER));
                     }else{
                         MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.UNSUCESS, Data.CUSTOMER));
                     }
                     customerTable.getItems().setAll(CustomerClientImpl.getInstance().getAll());
-                } catch (IOException ex) {
-                    Logger.getLogger(CustomerViewCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
                 }
             });
             

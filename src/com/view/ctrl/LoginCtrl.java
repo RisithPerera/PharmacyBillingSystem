@@ -44,12 +44,8 @@ public class LoginCtrl implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         primaryStage = Main.primaryStage;
         currentTimeText.textProperty().bind(Main.timeTask.messageProperty());
-        try {
-            userList = UserClientImpl.getInstance().getAll();
-        } catch (IOException ex) {
-            Logger.getLogger(LoginCtrl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        userList = UserClientImpl.getInstance().getAll();
+
         loginBtnEnable();
         validationNodes();
     }

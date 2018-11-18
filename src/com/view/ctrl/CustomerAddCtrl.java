@@ -167,15 +167,18 @@ public class CustomerAddCtrl implements Initializable {
         selectedCustomer.setExpireDate(expDateText.getValue().toString());
         selectedCustomer.setPoints(0);
         try {
-            getInstance().add(selectedCustomer);
-            MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.ADD, Data.CUSTOMER));
-            MainCtrl.getInstance().showContent(String.format(View.PATH, View.CUSTOMER_VIEW));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            if(CustomerClientImpl.getInstance().add(selectedCustomer)){
+                MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.ADD, Data.CUSTOMER));
+                MainCtrl.getInstance().showContent(String.format(View.PATH, View.CUSTOMER_VIEW));
+            }else{
+                MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.UNSUCESS, Data.CUSTOMER));
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(),e.getMessage());
+        } catch (SQLException e) {
+            MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(),e.getMessage());
+        } catch (ClassNotFoundException e) {
+            MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(),e.getMessage());
         }
     }
 
@@ -196,19 +199,23 @@ public class CustomerAddCtrl implements Initializable {
             selectedCustomer.setIssueDate(issueDateText.getValue().toString());
             selectedCustomer.setExpireDate(expDateText.getValue().toString()); 
             try {
-                getInstance().update(selectedCustomer);
-                MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.UPDATE, Data.CUSTOMER));
-                MainCtrl.getInstance().showContent(String.format(View.PATH, View.CUSTOMER_VIEW));
-            } catch (IOException ex) {
-                Logger.getLogger(CustomerAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                if(CustomerClientImpl.getInstance().update(selectedCustomer)){
+                    MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.UPDATE, Data.CUSTOMER));
+                    MainCtrl.getInstance().showContent(String.format(View.PATH, View.CUSTOMER_VIEW));
+                }else{
+                    MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.UNSUCESS, Data.CUSTOMER));
+                }
+            } catch (IOException e) {
+                MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(),e.getMessage());
             } catch (SQLException e) {
-                e.printStackTrace();
+                MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(),e.getMessage());
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(),e.getMessage());
             }
         }else{
             MessageBoxViewCtrl.display(Message.TITLE,"Selected Customer Is Null Object");
         }
+
     }
     
     private void clearFields(){

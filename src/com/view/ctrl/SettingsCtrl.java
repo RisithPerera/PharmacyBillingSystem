@@ -14,6 +14,7 @@ import com.model.child.Customer;
 import com.model.child.User;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -59,17 +60,13 @@ public class SettingsCtrl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
-            timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
-            usernameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
-            userTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-            
-            userTable.getItems().setAll(UserClientImpl.getInstance().getAll());
-            userTypeCombo.getItems().addAll(Data.USER_TYPE);
-        } catch (IOException ex) {
-            Logger.getLogger(SettingsCtrl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
+        usernameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        userTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+        userTable.getItems().setAll(UserClientImpl.getInstance().getAll());
+        userTypeCombo.getItems().addAll(Data.USER_TYPE);
     }
     
     @FXML
@@ -79,17 +76,19 @@ public class SettingsCtrl implements Initializable {
                 User user = new User();
                 user.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
                 user.setTime(new SimpleDateFormat("hh:mm:ss").format(new Date()));
-                user.setId(Long.toString(UserClientImpl.getInstance().getNextId()));
+                user.setId(UserClientImpl.getInstance().getNextId());
                 user.setUserName(usernameText.getText());
                 user.setPassword(passwordText.getText());
-                user.setType(Integer.toString(userTypeCombo.getSelectionModel().getSelectedIndex()));
+                user.setType(userTypeCombo.getSelectionModel().getSelectedIndex());
 
                 UserClientImpl.getInstance().add(user);
                 userTable.getItems().setAll(UserClientImpl.getInstance().getAll());
              
                 MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.ADD, Data.USER));
-            } catch (IOException ex) {
-                Logger.getLogger(SettingsCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException e) {
+                MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(), e.getMessage());
+            } catch (ClassNotFoundException e) {
+                MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(), e.getMessage());
             }
         }else{
             System.out.println("Passwords aren't matched....!");

@@ -15,5 +15,5 @@ import javafx.collections.ObservableList;
  */
 public interface CustomerOrderDataClient{
     public boolean add(ObservableList<CustomerOrderData> customerOrderDataList) throws SQLException, ClassNotFoundException;
-    public ObservableList<CustomerOrderData> search(int cusOrderId);
+    public ObservableList<CustomerOrderData> search(int cusOrderId) throws SQLException, ClassNotFoundException;
 }

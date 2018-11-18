@@ -41,30 +41,33 @@ public class CustomerOrderClientImpl implements CustomerOrderClient{
     
     @Override
     public boolean add(CustomerOrder customerOrder, ObservableList<CustomerOrderData> customerOrderDataList) throws SQLException, ClassNotFoundException {
-        customerOrderList.add(customerOrder);
-        String query = "Insert into customerOrder values(?,?,?,?)";
-        Connection conn = BaseConnection.createConnection().getConnection();
-        conn.setAutoCommit(false);
-        try{
-            PreparedStatement state = conn.prepareStatement(query);
-            state.setObject(1, customerOrder.getDate());
-            state.setObject(2, customerOrder.getTime());
-            state.setObject(3, customerOrder.getId());
-            state.setObject(4, customerOrder.getCustomer().getId());
+        if(customerOrderDataList != null) {
+            String query = "Insert into customerOrder values(?,?,?,?)";
+            Connection conn = BaseConnection.createConnection().getConnection();
+            conn.setAutoCommit(false);
+            try {
+                PreparedStatement state = conn.prepareStatement(query);
+                state.setObject(1, customerOrder.getDate());
+                state.setObject(2, customerOrder.getTime());
+                state.setObject(3, customerOrder.getId());
+                state.setObject(4, customerOrder.getCustomer().getId());
 
-            if(state.executeUpdate()>0){
-                if(CustomerOrderDataClientImpl.getInstance().add(customerOrderDataList)){
-                    conn.commit();
-                    return true;
+                if (state.executeUpdate() > 0) {
+                    if (CustomerOrderDataClientImpl.getInstance().add(customerOrderDataList)) {
+                        customerOrderList.add(customerOrder);
+                        conn.commit();
+                        return true;
+                    }
+                    conn.rollback();
+                    return false;
                 }
                 conn.rollback();
                 return false;
+            } finally {
+                conn.setAutoCommit(true);
             }
-            conn.rollback();
-            return false;
-        }finally{
-            conn.setAutoCommit(true);
         }
+        return false;
     }
 
 
@@ -82,6 +85,7 @@ public class CustomerOrderClientImpl implements CustomerOrderClient{
     public ObservableList<CustomerOrder> getAll() {
         return customerOrderList;
     }
+
 
     @Override
     public void loadAll() throws SQLException, ClassNotFoundException {

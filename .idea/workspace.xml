@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="All SQL Database clients are finished">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="SuperClient was deleted. Add Custome functions to client interfaces">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/base/client/CustomerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/CustomerClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PharmacyBillingSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PharmacyBillingSystem.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/base/client/CustomerOrderClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/CustomerOrderClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/base/client/CustomerOrderDataClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/CustomerOrderDataClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/base/client/NormalOrderClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/NormalOrderClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/base/client/NormalOrderDataClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/NormalOrderDataClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/base/client/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/UserClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/base/client/impl/CustomerClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/impl/CustomerClientImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderClientImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderDataClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderDataClientImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/base/client/superb/SuperClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderClientImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderDataClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderDataClientImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/base/client/impl/UserClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/impl/UserClientImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/base/connection/BaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/connection/BaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/model/child/CustomerOrderData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/model/child/CustomerOrderData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/model/child/NormalOrderData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/model/child/NormalOrderData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/view/ctrl/CustomerAddCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/view/ctrl/CustomerAddCtrl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderAddCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderAddCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderViewCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderViewCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/view/ctrl/CustomerViewCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/view/ctrl/CustomerViewCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/view/ctrl/LoginCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/view/ctrl/LoginCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/view/ctrl/MessageBoxViewCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/view/ctrl/MessageBoxViewCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/view/ctrl/NormalOrderAddCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/view/ctrl/NormalOrderAddCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/view/ctrl/NormalOrderViewCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/view/ctrl/NormalOrderViewCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/view/ctrl/SettingsCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/view/ctrl/SettingsCtrl.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,6 +39,43 @@
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="pharmacy@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="pharmacy@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="pharmacy@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="pharmacy: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="pharmacy@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="pharmacy: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="user: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
+    </expand>
+    <select />
   </component>
   <component name="DebuggerManager">
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
@@ -70,10 +119,11 @@
     <session id="-429596271">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="10" />
           <entry key="project.open.time.103" value="1" />
-          <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.49" value="1" />
+          <entry key="project.open.time.3" value="2" />
+          <entry key="project.open.time.49" value="2" />
+          <entry key="project.open.time.52" value="1" />
           <entry key="project.open.time.54" value="1" />
           <entry key="project.open.time.55" value="1" />
           <entry key="project.open.time.59" value="1" />
@@ -81,29 +131,33 @@
           <entry key="project.open.time.61" value="1" />
           <entry key="project.open.time.62" value="1" />
           <entry key="project.open.time.74" value="1" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="95" />
+          <entry key="fxml" value="2" />
+          <entry key="java" value="170" />
+          <entry key="user" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="95" />
+          <entry key="Database Element" value="1" />
+          <entry key="JAVA" value="170" />
+          <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1422" />
-          <entry key="txt" value="74" />
+          <entry key="java" value="1978" />
+          <entry key="txt" value="153" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1422" />
-          <entry key="PLAIN_TEXT" value="74" />
+          <entry key="JAVA" value="1978" />
+          <entry key="PLAIN_TEXT" value="153" />
         </counts>
       </usages-collector>
     </session>
@@ -114,26 +168,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderDataClientImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/com/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="79" column="54" selection-start-line="79" selection-start-column="54" selection-end-line="79" selection-end-column="54" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2759#2760#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/base/client/CustomerOrderDataClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="226">
+              <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -179,31 +217,38 @@
         <option value="$PROJECT_DIR$/src/com/model/superb/SuperModel.java" />
         <option value="$PROJECT_DIR$/src/com/manifest/View.java" />
         <option value="$PROJECT_DIR$/src/com/base/list/ListConnection.java" />
-        <option value="$PROJECT_DIR$/src/com/base/connection/BaseConnection.java" />
         <option value="$PROJECT_DIR$/src/com/model/child/Ball.java" />
         <option value="$PROJECT_DIR$/src/com/model/child/Customer.java" />
         <option value="$PROJECT_DIR$/src/com/model/child/CustomerOrder.java" />
-        <option value="$PROJECT_DIR$/src/com/model/child/CustomerOrderData.java" />
-        <option value="$PROJECT_DIR$/src/com/main/Main.java" />
         <option value="$PROJECT_DIR$/src/com/model/child/NormalOrder.java" />
-        <option value="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderClientImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/model/child/NormalOrderData.java" />
-        <option value="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderDataClientImpl.java" />
         <option value="$PROJECT_DIR$/src/com/model/child/User.java" />
-        <option value="$PROJECT_DIR$/src/com/base/client/impl/UserClientImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/view/ctrl/MainCtrl.java" />
-        <option value="$PROJECT_DIR$/src/com/view/ctrl/CustomerAddCtrl.java" />
-        <option value="$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderAddCtrl.java" />
         <option value="$PROJECT_DIR$/src/com/base/client/superb/SuperClient.java" />
-        <option value="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderDataClientImpl.java" />
         <option value="$PROJECT_DIR$/src/com/base/client/CustomerClient.java" />
         <option value="$PROJECT_DIR$/src/com/base/client/NormalOrderClient.java" />
-        <option value="$PROJECT_DIR$/src/com/base/client/CustomerOrderClient.java" />
         <option value="$PROJECT_DIR$/src/com/base/client/UserClient.java" />
         <option value="$PROJECT_DIR$/src/com/base/client/CustomerOrderDataClient.java" />
         <option value="$PROJECT_DIR$/src/com/base/client/NormalOrderDataClient.java" />
         <option value="$PROJECT_DIR$/src/com/base/client/impl/CustomerClientImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/model/child/CustomerOrderData.java" />
+        <option value="$PROJECT_DIR$/src/com/model/child/NormalOrderData.java" />
+        <option value="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderClientImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderDataClientImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderDataClientImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/base/client/impl/UserClientImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/view/ctrl/MainCtrl.java" />
+        <option value="$PROJECT_DIR$/src/com/view/ctrl/CustomerAddCtrl.java" />
         <option value="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderClientImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/base/client/CustomerOrderClient.java" />
+        <option value="$PROJECT_DIR$/src/com/view/ctrl/CustomerViewCtrl.java" />
+        <option value="$PROJECT_DIR$/src/com/view/ctrl/LoginCtrl.java" />
+        <option value="$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderAddCtrl.java" />
+        <option value="$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderViewCtrl.java" />
+        <option value="$PROJECT_DIR$/src/com/view/ctrl/NormalOrderViewCtrl.java" />
+        <option value="$PROJECT_DIR$/src/com/view/ctrl/SettingsCtrl.java" />
+        <option value="$PROJECT_DIR$/src/com/view/ctrl/MessageBoxViewCtrl.java" />
+        <option value="$PROJECT_DIR$/src/com/base/connection/BaseConnection.java" />
+        <option value="$PROJECT_DIR$/src/com/view/ctrl/NormalOrderAddCtrl.java" />
+        <option value="$PROJECT_DIR$/src/com/main/Main.java" />
       </list>
     </option>
   </component>
@@ -250,13 +295,32 @@
               <item name="PharmacyBillingSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="PharmacyBillingSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PharmacyBillingSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="PharmacyBillingSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="ctrl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PharmacyBillingSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="PharmacyBillingSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+            </path>
+            <path>
+              <item name="PharmacyBillingSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="Extensions" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
+            </path>
+            <path>
+              <item name="PharmacyBillingSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="Extensions" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
+              <item name="com.intellij.database" type="1e004dc1:ScratchProjectViewPane$MyRootNode$1$1" />
             </path>
           </expand>
           <select />
@@ -266,6 +330,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
@@ -275,13 +340,14 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542040442740" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542537682386" />
+    <property name="database.console.LAST_STATE" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mysql-connector.jar.zip!/" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
@@ -553,7 +619,10 @@
       <workItem from="1541479014503" duration="3405000" />
       <workItem from="1541950019997" duration="2918000" />
       <workItem from="1541963788995" duration="1960000" />
-      <workItem from="1542030034060" duration="9882000" />
+      <workItem from="1542030034060" duration="11255000" />
+      <workItem from="1542074665797" duration="3502000" />
+      <workItem from="1542116082072" duration="41000" />
+      <workItem from="1542517157698" duration="12300000" />
     </task>
     <task id="LOCAL-00001" summary="Adding SQL Database Initialized">
       <created>1540042149228</created>
@@ -583,11 +652,18 @@
       <option name="project" value="LOCAL" />
       <updated>1541966266636</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="SuperClient was deleted. Add Custome functions to client interfaces">
+      <created>1542044389667</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1542044389667</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59599000" />
+    <option name="totallyTimeSpent" value="76815000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -600,10 +676,11 @@
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" />
       <window_info id="Image Layers" order="6" />
-      <window_info active="true" content_ui="combo" id="Project" order="7" sideWeight="0.6703755" visible="true" weight="0.21104388" />
+      <window_info active="true" content_ui="combo" id="Project" order="7" sideWeight="0.6703755" visible="true" weight="0.2375189" />
+      <window_info anchor="bottom" id="Database Console" weight="0.3295082" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.1774461" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27213115" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -612,17 +689,17 @@
       <window_info anchor="bottom" id="Application Servers" order="8" />
       <window_info anchor="bottom" id="Profiler" order="9" />
       <window_info anchor="bottom" id="Changes" order="10" />
-      <window_info anchor="bottom" id="Messages" order="11" visible="true" weight="0.2967213" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.18688525" />
       <window_info anchor="bottom" id="Terminal" order="12" />
       <window_info anchor="bottom" id="Problems" order="13" />
       <window_info anchor="bottom" id="Version Control" order="14" weight="0.4" />
-      <window_info anchor="bottom" id="Database Changes" order="15" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="15" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Maven Projects" order="4" />
-      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Database" order="5" weight="0.20801815" />
       <window_info anchor="right" id="JetGradle" order="6" />
       <window_info anchor="right" id="Properties" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="8" />
@@ -641,7 +718,8 @@
     <MESSAGE value="Create SQL Connection" />
     <MESSAGE value="Finish CustomerClient for SQL server" />
     <MESSAGE value="All SQL Database clients are finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="All SQL Database clients are finished" />
+    <MESSAGE value="SuperClient was deleted. Add Custome functions to client interfaces" />
+    <option name="LAST_COMMIT_MESSAGE" value="SuperClient was deleted. Add Custome functions to client interfaces" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -653,22 +731,16 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/model/child/NormalOrderData.java</url>
-          <line>80</line>
-          <properties />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/model/child/NormalOrderData.java</url>
-          <line>84</line>
-          <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/base/client/impl/CustomerClientImpl.java</url>
           <line>132</line>
           <properties />
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/view/ctrl/CustomerAddCtrl.java</url>
+          <line>108</line>
+          <properties />
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -678,47 +750,12 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml" />
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java" />
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/manifest/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/manifest/Symbol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/manifest/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/manifest/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/manifest/Data.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/view/fxml/about.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/model/child/Ball.java" />
     <entry file="file://$PROJECT_DIR$/src/com/model/superb/SuperModel.java">
@@ -763,160 +800,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/connection/BaseConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="76" selection-start-line="16" selection-start-column="76" selection-end-line="16" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/model/child/Customer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/model/child/NormalOrder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/base/list/ListConnection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="71" column="5" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/NormalOrderClientImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="110" column="17" selection-start-line="103" selection-start-column="4" selection-end-line="110" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/NormalOrderDataClientImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-832">
-          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1568#1569#0" expanded="true" />
-            <element signature="e#1595#1596#0" expanded="true" />
-            <element signature="e#1649#1650#0" expanded="true" />
-            <element signature="e#1676#1677#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/UserClientImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="99" column="57" lean-forward="true" selection-start-line="99" selection-start-column="57" selection-end-line="99" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1900#1901#0" expanded="true" />
-            <element signature="e#1933#1934#0" expanded="true" />
-            <element signature="e#1981#1982#0" expanded="true" />
-            <element signature="e#2008#2009#0" expanded="true" />
-            <element signature="e#2264#2265#0" expanded="true" />
-            <element signature="e#2295#2296#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/model/child/CustomerOrder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-611">
-          <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/model/child/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
-          <folding>
-            <element signature="e#0#2631#0" expanded="true" />
-            <element signature="e#612#613#0" expanded="true" />
-            <element signature="e#640#641#0" expanded="true" />
-            <element signature="e#942#943#0" expanded="true" />
-            <element signature="e#969#970#0" expanded="true" />
-            <element signature="e#1009#1010#0" expanded="true" />
-            <element signature="e#1041#1042#0" expanded="true" />
-            <element signature="e#1072#1073#0" expanded="true" />
-            <element signature="e#1099#1100#0" expanded="true" />
-            <element signature="e#1139#1140#0" expanded="true" />
-            <element signature="e#1171#1172#0" expanded="true" />
-            <element signature="e#1197#1198#0" expanded="true" />
-            <element signature="e#1222#1223#0" expanded="true" />
-            <element signature="e#1255#1256#0" expanded="true" />
-            <element signature="e#1283#1284#0" expanded="true" />
-            <element signature="e#1318#1319#0" expanded="true" />
-            <element signature="e#1349#1350#0" expanded="true" />
-            <element signature="e#1397#1398#0" expanded="true" />
-            <element signature="e#1437#1438#0" expanded="true" />
-            <element signature="e#1472#1473#0" expanded="true" />
-            <element signature="e#1503#1504#0" expanded="true" />
-            <element signature="e#1551#1552#0" expanded="true" />
-            <element signature="e#1591#1592#0" expanded="true" />
-            <element signature="e#1619#1620#0" expanded="true" />
-            <element signature="e#1646#1647#0" expanded="true" />
-            <element signature="e#1683#1684#0" expanded="true" />
-            <element signature="e#1715#1716#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/model/child/NormalOrderData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-679">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="docComment;class#NormalOrderData#0" />
-            <element signature="method#NormalOrderData#0;class#NormalOrderData#0" />
-            <element signature="method#toString#0;class#NormalOrderData#0" />
-            <element signature="method#hashCode#0;class#NormalOrderData#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/MainCtrl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="137" column="18" selection-start-line="137" selection-start-column="18" selection-end-line="137" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/NormalOrderAddCtrl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="103" column="52" selection-start-line="103" selection-start-column="52" selection-end-line="103" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerAddCtrl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="206" column="36" lean-forward="true" selection-start-line="206" selection-start-column="36" selection-end-line="206" selection-end-column="36" />
-          <folding>
-            <element signature="docComment;class#CustomerAddCtrl#0" />
-            <element signature="docComment;field#controllerType#0;class#CustomerAddCtrl#0" />
-            <element signature="method#initialize#0;class#CustomerAddCtrl#0" />
-            <element signature="method#showCustomerBtnEvent#0;class#CustomerAddCtrl#0" />
-            <element signature="method#saveBtnEvent#0;class#CustomerAddCtrl#0" />
-            <element signature="method#cancelBtnEvent#0;class#CustomerAddCtrl#0" />
-            <element signature="method#clearFields#0;class#CustomerAddCtrl#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -931,9 +818,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="511">
           <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -944,54 +828,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/main/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/com/base/client/superb/SuperClient.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/base/client/NormalOrderClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="80" column="32" lean-forward="true" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/model/child/CustomerOrderData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-          <folding>
-            <element signature="docComment;class#CustomerOrderData#0" />
-            <element signature="method#CustomerOrderData#0;class#CustomerOrderData#0" />
-            <element signature="method#hashCode#0;class#CustomerOrderData#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderAddCtrl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="244" selection-start-line="244" selection-end-line="244" />
-          <folding>
-            <element signature="e#12821#12822#0" expanded="true" />
-            <element signature="e#12869#12870#0" expanded="true" />
-            <element signature="e#12918#12919#0" expanded="true" />
-            <element signature="e#12957#12958#0" expanded="true" />
-            <element signature="e#13011#13012#0" expanded="true" />
-            <element signature="e#13059#13060#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/client/superb/SuperClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+        <state relative-caret-position="238">
+          <caret line="18" column="99" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="99" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/client/NormalOrderClient.java">
+    <entry file="file://$PROJECT_DIR$/src/com/model/child/NormalOrderData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+        <state relative-caret-position="-287">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1000,19 +851,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/base/client/NormalOrderDataClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="221">
+          <caret line="17" column="43" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="43" />
           <folding>
-            <element signature="e#0#634#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/client/UserClient.java">
+    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/NormalOrderDataClientImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        <state relative-caret-position="86">
+          <caret line="61" column="49" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1029,25 +879,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerClientImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/NormalOrderClientImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="66" column="12" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
+        <state relative-caret-position="17">
+          <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#CustomerClientImpl#0;class#CustomerClientImpl#0" />
-            <element signature="method#getInstance#0;class#CustomerClientImpl#0" />
-            <element signature="e#5752#5753#0" expanded="true" />
-            <element signature="e#5787#5788#0" expanded="true" />
-            <marker date="1542044173642" expanded="true" signature="1102:1166" ph="Insert into member... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/base/client/UserClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/UserClientImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1104">
+          <caret line="62" column="82" lean-forward="true" selection-start-line="62" selection-start-column="82" selection-end-line="62" selection-end-column="82" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/AnalysisCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-42">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/fxml/messageBox.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/fxml/about.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/base/client/CustomerOrderDataClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" column="66" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/model/child/CustomerOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="75" column="18" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
+          <folding>
+            <element signature="e#1536#1537#0" expanded="true" />
+            <element signature="e#1581#1582#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/model/child/CustomerOrderData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="78" column="16" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#CustomerOrderData#0" />
+            <element signature="method#CustomerOrderData#1;class#CustomerOrderData#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/base/client/CustomerOrderClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+        <state relative-caret-position="306">
+          <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1056,32 +969,193 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderClientImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1024">
-          <caret line="68" column="4" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="4" />
+        <state relative-caret-position="866">
+          <caret line="94" column="53" lean-forward="true" selection-start-line="94" selection-start-column="53" selection-end-line="94" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/client/CustomerOrderDataClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2984#2985#0" expanded="true" />
+            <element signature="e#3024#3025#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderDataClientImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="79" column="54" selection-start-line="79" selection-start-column="54" selection-end-line="79" selection-end-column="54" />
+        <state relative-caret-position="-238">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2759#2760#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerViewCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1367">
+          <caret line="82" column="10" lean-forward="true" selection-start-line="82" selection-start-column="10" selection-end-line="83" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/DashboardCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-137">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/LoginCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/MainCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="919">
+          <caret line="112" column="69" selection-start-line="112" selection-start-column="69" selection-end-line="112" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/model/child/NormalOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+          <folding>
+            <element signature="e#550#551#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/model/child/Customer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-236">
+          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderAddCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="220" column="9" selection-start-line="220" selection-start-column="9" selection-end-line="220" selection-end-column="9" />
+          <folding>
+            <element signature="docComment;class#CustomerOrderAddCtrl#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerAddCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="213" column="13" selection-start-line="209" selection-start-column="12" selection-end-line="213" selection-end-column="13" />
+          <folding>
+            <element signature="docComment;class#CustomerAddCtrl#0" />
+            <element signature="docComment;field#controllerType#0;class#CustomerAddCtrl#0" />
+            <element signature="method#initialize#0;class#CustomerAddCtrl#0" />
+            <element signature="method#showCustomerBtnEvent#0;class#CustomerAddCtrl#0" />
+            <element signature="method#cancelBtnEvent#0;class#CustomerAddCtrl#0" />
+            <element signature="method#prepareCustomerAddView#0;class#CustomerAddCtrl#0" />
+            <element signature="method#prepareCustomerUpdateView#0;class#CustomerAddCtrl#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderViewCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="165" column="32" selection-start-line="165" selection-start-column="32" selection-end-line="165" selection-end-column="32" />
+          <folding>
+            <element signature="docComment;class#CustomerOrderViewCtrl#0" />
+            <element signature="method#addNewBtnEvent#0;class#CustomerOrderViewCtrl#0" />
+            <element signature="method#viewAllBtnEvent#0;class#CustomerOrderViewCtrl#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/model/child/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/NormalOrderViewCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="165" column="13" selection-start-line="160" selection-start-column="16" selection-end-line="165" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/SettingsCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="91" column="13" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://7483c80f-1fb5-43a8-bfa4-4148a0da3b0e/schema/pharmacy/table/user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../IJSE JAVA/Sir - Prasad/SanasaProject/Main/src/dbConnection/DBConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="13" column="73" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/base/connection/BaseConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#777#778#0" expanded="true" />
+            <element signature="e#804#805#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/MessageBoxViewCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="79" column="38" selection-start-line="79" selection-start-column="38" selection-end-line="79" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/NormalOrderAddCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="183" column="32" selection-start-line="183" selection-start-column="32" selection-end-line="183" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerClientImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-289">
+          <caret line="158" column="16" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#CustomerClientImpl#0;class#CustomerClientImpl#0" />
+            <element signature="method#getInstance#0;class#CustomerClientImpl#0" />
+            <marker date="1542044173642" expanded="true" signature="1102:1166" ph="Insert into member... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -1096,7 +1170,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -1152,6 +1225,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
+          <last-edited>mysql-connector</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
