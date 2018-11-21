@@ -11,23 +11,23 @@ import com.manifest.Message;
 import com.manifest.State;
 import com.manifest.View;
 import com.model.child.Customer;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import static com.base.client.impl.CustomerClientImpl.*;
 
@@ -43,9 +43,12 @@ public class CustomerAddCtrl implements Initializable {
   
     @FXML
     private TextField nicNoText, licNoText, teleNoText, whatsappText, viberText, emailText;
-    
+
     @FXML
-    private DatePicker dobText, issueDateText, expDateText;
+    private ComboBox<String> yearCombo, monthCombo, dayCombo;
+
+    @FXML
+    private DatePicker issueDateText, expDateText;
     
     @FXML
     private Button saveBtn;
@@ -64,6 +67,13 @@ public class CustomerAddCtrl implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         districtChoice.getItems().setAll(Data.DISTRICTS);
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        for (int i = currentYear - 90; i <= currentYear; i++) {
+            yearCombo.getItems().add(Integer.toString(i));
+        }
+        monthCombo.getItems().setAll(Data.MONTHS);
+        dayCombo.getItems().setAll(Data.DAYS);
+
     }    
 
     @FXML
@@ -118,7 +128,6 @@ public class CustomerAddCtrl implements Initializable {
             e.printStackTrace();
         }
         districtChoice.getSelectionModel().select(0);
-        dobText.setValue(LocalDate.of(1990, 01, 01));
         LocalDate localDate = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         issueDateText.setValue(localDate);
         expDateText.setValue(localDate.plusDays(180));     
@@ -135,7 +144,9 @@ public class CustomerAddCtrl implements Initializable {
         streetText.setText(customer.getStreet());    
         cityText.setText(customer.getCity());   
         districtChoice.getSelectionModel().select(customer.getDistrict());
-        dobText.setValue(LocalDate.parse(customer.getDate(), DateTimeFormatter.ISO_DATE));
+        yearCombo.getSelectionModel().select(Integer.toString(LocalDate.parse(customer.getDob()).getYear()));
+        monthCombo.getSelectionModel().select(LocalDate.parse(customer.getDob()).getMonthValue() - 1);
+        dayCombo.getSelectionModel().select(LocalDate.parse(customer.getDob()).getDayOfMonth() - 1);
         nicNoText.setText(customer.getNicNo());     
         licNoText.setText(customer.getLicNo());     
         teleNoText.setText(customer.getTeleNo()); 
@@ -154,9 +165,9 @@ public class CustomerAddCtrl implements Initializable {
         selectedCustomer.setFName(fNameText.getText()); 
         selectedCustomer.setLName(lNameText.getText());      
         selectedCustomer.setStreet(streetText.getText());    
-        selectedCustomer.setCity(cityText.getText());      
-        selectedCustomer.setDistrict(districtChoice.getSelectionModel().getSelectedItem());  
-        selectedCustomer.setDob(dobText.getValue().toString());       
+        selectedCustomer.setCity(cityText.getText());
+        selectedCustomer.setDistrict(districtChoice.getSelectionModel().getSelectedItem());
+        selectedCustomer.setDob(yearCombo.getSelectionModel().getSelectedItem() + "-" + String.format("%02d", monthCombo.getSelectionModel().getSelectedIndex() + 1) + "-" + dayCombo.getSelectionModel().getSelectedItem());
         selectedCustomer.setNicNo(nicNoText.getText());     
         selectedCustomer.setLicNo(licNoText.getText());     
         selectedCustomer.setTeleNo(teleNoText.getText());     
@@ -187,9 +198,9 @@ public class CustomerAddCtrl implements Initializable {
             selectedCustomer.setFName(fNameText.getText()); 
             selectedCustomer.setLName(lNameText.getText());      
             selectedCustomer.setStreet(streetText.getText());    
-            selectedCustomer.setCity(cityText.getText());      
-            selectedCustomer.setDistrict(districtChoice.getSelectionModel().getSelectedItem());  
-            selectedCustomer.setDob(dobText.getValue().toString());       
+            selectedCustomer.setCity(cityText.getText());
+            selectedCustomer.setDistrict(districtChoice.getSelectionModel().getSelectedItem());
+            selectedCustomer.setDob(yearCombo.getSelectionModel().getSelectedItem() + "-" + String.format("%02d", monthCombo.getSelectionModel().getSelectedIndex() + 1) + "-" + dayCombo.getSelectionModel().getSelectedItem());
             selectedCustomer.setNicNo(nicNoText.getText());     
             selectedCustomer.setLicNo(licNoText.getText());     
             selectedCustomer.setTeleNo(teleNoText.getText());     
@@ -225,7 +236,6 @@ public class CustomerAddCtrl implements Initializable {
         streetText.clear();
         cityText.clear();
         districtChoice.getSelectionModel().select(0);
-        dobText.setValue(LocalDate.of(1990, 01, 01));
         nicNoText.clear();
         licNoText.clear();
         teleNoText.clear();

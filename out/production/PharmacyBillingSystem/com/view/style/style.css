@@ -202,8 +202,22 @@
 /*---------------------------------- Label ---------------------------------- */
 
 .dashBoardLabel {
-    -fx-background-color: rgb(26,26,28);
+    -fx-background-color: #1A1A1C;
     -fx-text-fill: #c3c3cf;
+}
+
+.inputLabel {
+    -fx-background-color: #1A1A1C;
+    -fx-background-radius: 100, 0;
+
+    -fx-border-color: #1A1A1C;
+    -fx-border-width: 2px;
+    -fx-border-radius: 100;
+
+    -fx-text-fill: #52525e;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 16px;
 }
 
 /*------------------------------- Table View -------------------------------- */
@@ -322,7 +336,7 @@
     -fx-border-width: 2px;
     -fx-border-radius: 100;
     
-    -fx-text-fill: white;
+    -fx-text-fill: #52525e;
     -fx-font-weight: bold;
     -fx-font-family: "Segoe UI";
     -fx-font-size: 16px;   

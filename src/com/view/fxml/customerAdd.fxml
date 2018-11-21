@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -17,7 +18,8 @@
    <children>
       <HBox layoutX="297.0" layoutY="24.0" prefHeight="25.0" spacing="10.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="12.5">
          <children>
-            <Button fx:id="showCustomerBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showCustomerBtnEvent" text="Show Customers" HBox.hgrow="ALWAYS" />
+             <Button fx:id="showCustomerBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                     onAction="#showCustomerBtnEvent" text="View Customers" HBox.hgrow="ALWAYS"/>
          </children>
       </HBox>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="658.0" prefWidth="400.0">
@@ -53,13 +55,32 @@
                   </HBox>
                </children>
             </VBox>
-            <GridPane hgap="5.0" layoutY="373.0" prefHeight="305.0" prefWidth="565.0" vgap="10.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0">
+             <HBox layoutY="350.0" prefWidth="307.0" spacing="10.0" AnchorPane.leftAnchor="0.0"
+                   AnchorPane.rightAnchor="0.0">
+                 <children>
+                     <Label fx:id="titleLabel1" alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="35.0"
+                            prefWidth="149.0" styleClass="inputLabel" text="Date Of Birth" textFill="WHITE"
+                            HBox.hgrow="ALWAYS">
+                         <font>
+                             <Font name="Segoe UI" size="24.0"/>
+                         </font>
+                     </Label>
+                     <ComboBox fx:id="yearCombo" maxHeight="35.0" maxWidth="1.7976931348623157E308" prefHeight="35.0"
+                               prefWidth="115.0" promptText="Year" HBox.hgrow="ALWAYS"/>
+                     <ComboBox fx:id="monthCombo" maxHeight="26.0" prefHeight="26.0" prefWidth="150.0"
+                               promptText="Month"/>
+                     <ComboBox fx:id="dayCombo" maxHeight="35.0" maxWidth="117.0" prefHeight="35.0" prefWidth="117.0"
+                               promptText="Day"/>
+                 </children>
+             </HBox>
+             <GridPane hgap="5.0" layoutY="373.0" prefHeight="259.0" prefWidth="565.0" vgap="10.0"
+                       AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints vgrow="SOMETIMES" />
+                   <RowConstraints/>
                   <RowConstraints vgrow="SOMETIMES" />
                   <RowConstraints vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -67,7 +88,6 @@
                   <RowConstraints vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <DatePicker fx:id="dobText" editable="false" maxWidth="1.7976931348623157E308" promptText="Date Of Birth" />
                   <TextField fx:id="nicNoText" maxWidth="317.0" prefHeight="26.0" prefWidth="317.0" promptText="Identity Card Number" GridPane.rowIndex="1" />
                   <TextField fx:id="licNoText" maxWidth="335.0" prefHeight="26.0" prefWidth="335.0" promptText="License Card Number" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="teleNoText" maxWidth="317.0" prefHeight="26.0" prefWidth="317.0" promptText="Telephone Number" GridPane.rowIndex="2" />
