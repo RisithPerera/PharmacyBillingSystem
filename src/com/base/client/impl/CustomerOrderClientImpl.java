@@ -41,33 +41,36 @@ public class CustomerOrderClientImpl implements CustomerOrderClient{
     
     @Override
     public boolean add(CustomerOrder customerOrder, ObservableList<CustomerOrderData> customerOrderDataList) throws SQLException, ClassNotFoundException {
-        if(customerOrderDataList != null) {
-            String query = "Insert into customerOrder values(?,?,?,?)";
-            Connection conn = BaseConnection.createConnection().getConnection();
-            conn.setAutoCommit(false);
-            try {
-                PreparedStatement state = conn.prepareStatement(query);
-                state.setObject(1, customerOrder.getDate());
-                state.setObject(2, customerOrder.getTime());
-                state.setObject(3, customerOrder.getId());
-                state.setObject(4, customerOrder.getCustomer().getId());
 
-                if (state.executeUpdate() > 0) {
-                    if (CustomerOrderDataClientImpl.getInstance().add(customerOrderDataList)) {
-                        customerOrderList.add(customerOrder);
-                        conn.commit();
-                        return true;
-                    }
-                    conn.rollback();
-                    return false;
+        if (customerOrder == null || customerOrder.getCustomer() == null || customerOrderDataList == null) {
+            System.out.println("XXXXXXXXX");
+            return false;
+        }
+
+        String query = "Insert into customerOrder values(?,?,?,?)";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        conn.setAutoCommit(false);
+        try {
+            PreparedStatement state = conn.prepareStatement(query);
+            state.setObject(1, customerOrder.getDate());
+            state.setObject(2, customerOrder.getTime());
+            state.setObject(3, customerOrder.getId());
+            state.setObject(4, customerOrder.getCustomer().getId());
+
+            if (state.executeUpdate() > 0) {
+                if (CustomerOrderDataClientImpl.getInstance().add(customerOrderDataList)) {
+                    customerOrderList.add(customerOrder);
+                    conn.commit();
+                    return true;
                 }
                 conn.rollback();
                 return false;
-            } finally {
-                conn.setAutoCommit(true);
             }
+            conn.rollback();
+            return false;
+        } finally {
+            conn.setAutoCommit(true);
         }
-        return false;
     }
 
 
@@ -112,12 +115,12 @@ public class CustomerOrderClientImpl implements CustomerOrderClient{
 
     @Override
     public int getNextId() throws SQLException, ClassNotFoundException {
-        String query = "Select cusOrderId+1 from customerOrder order by 1 desc limit 1";
+        String query = "Select cusOrderId+1 as nextID from customerOrder order by 1 desc limit 1";
         Connection conn = BaseConnection.createConnection().getConnection();
         PreparedStatement state = conn.prepareStatement(query);
         ResultSet result = state.executeQuery();
         if (result.next()) {
-            return result.getInt(3);
+            return result.getInt("nextId");
         }
         return 0;
     }

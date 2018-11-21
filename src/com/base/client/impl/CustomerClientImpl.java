@@ -32,6 +32,7 @@ public class CustomerClientImpl implements CustomerClient {
 
     @Override
     public boolean add(Customer customer) throws SQLException, ClassNotFoundException {
+        if (customer == null) return false;
         String query = "Insert into customer values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         Connection conn = BaseConnection.createConnection().getConnection();
         conn.setAutoCommit(false);
@@ -72,6 +73,7 @@ public class CustomerClientImpl implements CustomerClient {
 
     @Override
     public boolean update(Customer customer) throws SQLException, ClassNotFoundException {
+        if (customer == null) return false;
         String query =  "Update customer set " +
                         "recordDate = ?, " +
                         "recordTime = ?, " +
@@ -129,6 +131,7 @@ public class CustomerClientImpl implements CustomerClient {
 
     @Override
     public boolean delete(int id) throws SQLException, ClassNotFoundException {
+        if (id < 0) return false;
         String query = "Delete from customer where cusId = ?";
         Connection conn = BaseConnection.createConnection().getConnection();
         PreparedStatement state = conn.prepareStatement(query);
@@ -144,6 +147,7 @@ public class CustomerClientImpl implements CustomerClient {
 
     @Override
     public Customer search(int id) {
+        if (id < 0) return null;
         Customer customer = new Customer(id);
         int index = customerList.indexOf(customer);
         if (index != -1) {
@@ -168,7 +172,7 @@ public class CustomerClientImpl implements CustomerClient {
         while (result.next()) {
             Customer customer = new Customer();
 
-            customer.setDate(result.getString(1));
+            customer.setDate(result.getString("recordDate"));
             customer.setTime(result.getString(2));
             customer.setId(result.getInt(3));
             customer.setFName(result.getString(4));
@@ -196,12 +200,12 @@ public class CustomerClientImpl implements CustomerClient {
 
     @Override
     public int getNextId() throws SQLException, ClassNotFoundException {
-        String query = "Select cusId+1 from customer order by 1 desc limit 1";
+        String query = "Select cusId+1 as nextID from customer order by 1 desc limit 1";
         Connection conn = BaseConnection.createConnection().getConnection();
         PreparedStatement state = conn.prepareStatement(query);
         ResultSet result = state.executeQuery();
         if (result.next()) {
-            return result.getInt(3);
+            return result.getInt("nextID");
         }
         return 0;
     }

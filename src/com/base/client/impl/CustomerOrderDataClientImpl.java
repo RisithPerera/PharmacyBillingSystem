@@ -53,6 +53,8 @@ public class CustomerOrderDataClientImpl implements CustomerOrderDataClient{
 
     @Override
     public ObservableList<CustomerOrderData> search(CustomerOrder customerOrder) throws SQLException, ClassNotFoundException {
+        if (customerOrder == null) return null;
+
         String query = "Select * from customerOrderData where cusOrderId = " + customerOrder.getId();
         Connection conn = BaseConnection.createConnection().getConnection();
         Statement state = conn.createStatement();

@@ -41,32 +41,33 @@ public class NormalOrderClientImpl implements NormalOrderClient{
   
     @Override
     public boolean add(NormalOrder normalOrder, ObservableList<NormalOrderData> normalOrderDataList) throws SQLException, ClassNotFoundException {
-        if(normalOrderDataList != null) {
-            String query = "Insert into normalOrder values(?,?,?,?)";
-            Connection conn = BaseConnection.createConnection().getConnection();
-            conn.setAutoCommit(false);
-            try {
-                PreparedStatement state = conn.prepareStatement(query);
-                state.setObject(1, normalOrder.getDate());
-                state.setObject(2, normalOrder.getTime());
-                state.setObject(3, normalOrder.getId());
+        if (normalOrder == null || normalOrderDataList == null) {
+            return false;
+        }
 
-                if (state.executeUpdate() > 0) {
-                    if (NormalOrderDataClientImpl.getInstance().add(normalOrderDataList)) {
-                        conn.commit();
-                        normalOrderList.add(normalOrder);
-                        return true;
-                    }
-                    conn.rollback();
-                    return false;
+        String query = "Insert into normalOrder values(?,?,?,?)";
+        Connection conn = BaseConnection.createConnection().getConnection();
+        conn.setAutoCommit(false);
+        try {
+            PreparedStatement state = conn.prepareStatement(query);
+            state.setObject(1, normalOrder.getDate());
+            state.setObject(2, normalOrder.getTime());
+            state.setObject(3, normalOrder.getId());
+
+            if (state.executeUpdate() > 0) {
+                if (NormalOrderDataClientImpl.getInstance().add(normalOrderDataList)) {
+                    conn.commit();
+                    normalOrderList.add(normalOrder);
+                    return true;
                 }
                 conn.rollback();
                 return false;
-            } finally {
-                conn.setAutoCommit(true);
             }
+            conn.rollback();
+            return false;
+        } finally {
+            conn.setAutoCommit(true);
         }
-        return false;
     }
 
     @Override
@@ -107,12 +108,12 @@ public class NormalOrderClientImpl implements NormalOrderClient{
 
     @Override
     public int getNextId() throws SQLException, ClassNotFoundException {
-        String query = "Select norOrderId+1 from normalOrder order by 1 desc limit 1";
+        String query = "Select norOrderId+1  as nextID from normalOrder order by 1 desc limit 1";
         Connection conn = BaseConnection.createConnection().getConnection();
         PreparedStatement state = conn.prepareStatement(query);
         ResultSet result = state.executeQuery();
         if (result.next()) {
-            return result.getInt(3);
+            return result.getInt("nextId");
         }
         return 0;
     }

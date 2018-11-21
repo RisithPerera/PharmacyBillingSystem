@@ -58,6 +58,9 @@ public class NormalOrderDataClientImpl implements NormalOrderDataClient{
 
     @Override
     public ObservableList<NormalOrderData> search(NormalOrder normalOrder) throws SQLException, ClassNotFoundException {
+
+        if (normalOrder == null) return null;
+
         String query = "Select * from normalOrderData where norOrderId = " + normalOrder.getId();
         Connection conn = BaseConnection.createConnection().getConnection();
         Statement state = conn.createStatement();

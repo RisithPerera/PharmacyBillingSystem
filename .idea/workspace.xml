@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Test commit...">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Fixed few some Exceptions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/base/client/CustomerOrderDataClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/CustomerOrderDataClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/base/client/NormalOrderDataClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/NormalOrderDataClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/base/client/impl/CustomerClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/impl/CustomerClientImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderClientImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderDataClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderDataClientImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderClientImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderDataClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderDataClientImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/base/client/impl/UserClientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/client/impl/UserClientImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/model/child/CustomerOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/model/child/CustomerOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderViewCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderViewCtrl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/view/ctrl/NormalOrderViewCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/view/ctrl/NormalOrderViewCtrl.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -107,12 +101,12 @@
     <session id="-429596271">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.103" value="1" />
           <entry key="project.open.time.3" value="2" />
           <entry key="project.open.time.49" value="2" />
-          <entry key="project.open.time.52" value="1" />
+          <entry key="project.open.time.52" value="2" />
           <entry key="project.open.time.54" value="1" />
           <entry key="project.open.time.55" value="1" />
           <entry key="project.open.time.59" value="1" />
@@ -120,33 +114,34 @@
           <entry key="project.open.time.61" value="1" />
           <entry key="project.open.time.62" value="1" />
           <entry key="project.open.time.74" value="1" />
-          <entry key="project.opened" value="14" />
+          <entry key="project.open.time.80" value="1" />
+          <entry key="project.opened" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="fxml" value="2" />
-          <entry key="java" value="199" />
+          <entry key="java" value="206" />
           <entry key="user" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Database Element" value="1" />
-          <entry key="JAVA" value="199" />
+          <entry key="JAVA" value="206" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2288" />
-          <entry key="txt" value="187" />
+          <entry key="java" value="2465" />
+          <entry key="txt" value="216" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2288" />
-          <entry key="PLAIN_TEXT" value="187" />
+          <entry key="JAVA" value="2465" />
+          <entry key="PLAIN_TEXT" value="216" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -160,162 +155,124 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.80496454">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/NormalOrderClientImpl.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="157">
-                  <caret line="76" column="57" selection-start-line="76" selection-start-column="57" selection-end-line="76" selection-end-column="57" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/NormalOrderDataClientImpl.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-5">
-                  <caret line="60" selection-start-line="60" selection-end-line="60" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderDataClientImpl.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="97">
-                  <caret line="55" column="97" selection-start-line="55" selection-start-column="77" selection-end-line="55" selection-end-column="97" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/model/child/CustomerOrder.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="80">
-                  <caret line="100" column="43" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="43" />
-                  <folding>
-                    <element signature="e#1536#1537#0" expanded="true" />
-                    <element signature="e#1581#1582#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/model/child/NormalOrder.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-381">
-                  <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
-                  <folding>
-                    <element signature="e#550#551#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/NormalOrderViewCtrl.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="54">
-                  <caret line="156" column="71" lean-forward="true" selection-start-line="156" selection-start-column="11" selection-end-line="156" selection-end-column="71" />
-                  <folding>
-                    <element signature="docComment;class#NormalOrderViewCtrl#0" />
-                    <element signature="method#initialize#0;class#NormalOrderViewCtrl#0" />
-                    <element signature="method#addNewBtnEvent#0;class#NormalOrderViewCtrl#0" />
-                    <element signature="method#viewAllBtnEvent#0;class#NormalOrderViewCtrl#0" />
-                    <element signature="method#todayBtnEvent#0;class#NormalOrderViewCtrl#0" />
-                    <element signature="method#yearComboEvent#0;class#NormalOrderViewCtrl#0" />
-                    <element signature="method#monthComboEvent#0;class#NormalOrderViewCtrl#0" />
-                    <element signature="method#dayComboEvent#0;class#NormalOrderViewCtrl#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderViewCtrl.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="114">
-                  <caret line="126" column="56" selection-start-line="126" selection-start-column="56" selection-end-line="126" selection-end-column="56" />
-                  <folding>
-                    <element signature="docComment;class#CustomerOrderViewCtrl#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderClientImpl.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="91" column="34" lean-forward="true" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="34" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerViewCtrl.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="85" column="9" lean-forward="true" selection-start-line="85" selection-start-column="9" selection-end-line="85" selection-end-column="9" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/com/model/child/CustomerOrderData.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="78" column="16" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="docComment;class#CustomerOrderData#0" />
-                    <element signature="method#CustomerOrderData#1;class#CustomerOrderData#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/NormalOrderViewCtrl.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2061">
-                  <caret line="271" selection-start-line="271" selection-end-line="271" />
-                  <folding>
-                    <element signature="docComment;class#NormalOrderViewCtrl#0" />
-                    <element signature="method#initialize#0;class#NormalOrderViewCtrl#0" />
-                    <element signature="method#addNewBtnEvent#0;class#NormalOrderViewCtrl#0" />
-                    <element signature="method#viewAllBtnEvent#0;class#NormalOrderViewCtrl#0" />
-                    <element signature="method#todayBtnEvent#0;class#NormalOrderViewCtrl#0" />
-                    <element signature="method#yearComboEvent#0;class#NormalOrderViewCtrl#0" />
-                    <element signature="method#monthComboEvent#0;class#NormalOrderViewCtrl#0" />
-                    <element signature="method#dayComboEvent#0;class#NormalOrderViewCtrl#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/NormalOrderClientImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="44" column="25" lean-forward="true" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/NormalOrderDataClientImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="76" column="27" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/UserClientImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-393">
+              <caret line="118" selection-start-line="118" selection-end-line="118" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderDataClientImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="111">
+              <caret line="55" column="46" lean-forward="true" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="46" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderViewCtrl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1530">
+              <caret line="132" column="4" lean-forward="true" selection-start-line="132" selection-start-column="4" selection-end-line="132" selection-end-column="4" />
+              <folding>
+                <element signature="docComment;class#CustomerOrderViewCtrl#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderClientImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="64">
+              <caret line="44" column="74" selection-start-line="44" selection-start-column="74" selection-end-line="44" selection-end-column="74" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerViewCtrl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="199">
+              <caret line="134" column="46" selection-start-line="134" selection-start-column="46" selection-end-line="134" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderAddCtrl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="213" column="85" lean-forward="true" selection-start-line="213" selection-start-column="85" selection-end-line="213" selection-end-column="85" />
+              <folding>
+                <element signature="docComment;class#CustomerOrderAddCtrl#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerAddCtrl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="113" column="81" lean-forward="true" selection-start-line="113" selection-start-column="81" selection-end-line="113" selection-end-column="81" />
+              <folding>
+                <element signature="docComment;class#CustomerAddCtrl#0" />
+                <element signature="docComment;field#controllerType#0;class#CustomerAddCtrl#0" />
+                <element signature="method#initialize#0;class#CustomerAddCtrl#0" />
+                <element signature="method#showCustomerBtnEvent#0;class#CustomerAddCtrl#0" />
+                <element signature="method#cancelBtnEvent#0;class#CustomerAddCtrl#0" />
+                <element signature="method#prepareCustomerUpdateView#0;class#CustomerAddCtrl#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerClientImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-648">
+              <caret line="149" column="31" lean-forward="true" selection-start-line="149" selection-start-column="8" selection-end-line="149" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -377,17 +334,17 @@
         <option value="$PROJECT_DIR$/src/com/base/connection/BaseConnection.java" />
         <option value="$PROJECT_DIR$/src/com/view/ctrl/NormalOrderAddCtrl.java" />
         <option value="$PROJECT_DIR$/src/com/main/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderClientImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/base/client/impl/CustomerClientImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/base/client/impl/UserClientImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderClientImpl.java" />
         <option value="$PROJECT_DIR$/src/com/base/client/CustomerOrderDataClient.java" />
         <option value="$PROJECT_DIR$/src/com/base/client/NormalOrderDataClient.java" />
-        <option value="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderDataClientImpl.java" />
-        <option value="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderDataClientImpl.java" />
         <option value="$PROJECT_DIR$/src/com/model/child/CustomerOrder.java" />
         <option value="$PROJECT_DIR$/src/com/view/ctrl/NormalOrderViewCtrl.java" />
         <option value="$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderViewCtrl.java" />
+        <option value="$PROJECT_DIR$/src/com/base/client/impl/CustomerClientImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderDataClientImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/base/client/impl/UserClientImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderDataClientImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderClientImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/base/client/impl/NormalOrderClientImpl.java" />
       </list>
     </option>
   </component>
@@ -417,7 +374,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -434,19 +390,7 @@
               <item name="PharmacyBillingSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="PharmacyBillingSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PharmacyBillingSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PharmacyBillingSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PharmacyBillingSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PharmacyBillingSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ctrl" type="462c0819:PsiDirectoryNode" />
+              <item name="child" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PharmacyBillingSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -456,6 +400,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -470,7 +415,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542566114618" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542566339627" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="js.eslint.eslintPackage" value="" />
@@ -754,6 +699,8 @@
       <workItem from="1542116082072" duration="41000" />
       <workItem from="1542517157698" duration="12300000" />
       <workItem from="1542545243115" duration="2056000" />
+      <workItem from="1542632043608" duration="1750000" />
+      <workItem from="1542768020289" duration="3865000" />
     </task>
     <task id="LOCAL-00001" summary="Adding SQL Database Initialized">
       <created>1540042149228</created>
@@ -804,11 +751,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542552956838</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixed few some Exceptions">
+      <created>1542566260952</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1542566260952</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86133000" />
+    <option name="totallyTimeSpent" value="92483000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -821,7 +775,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" weight="0.24962178" />
       <window_info id="Nl-Palette" order="1" />
@@ -830,10 +783,10 @@
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" />
       <window_info id="Image Layers" order="6" />
-      <window_info content_ui="combo" id="Project" order="7" sideWeight="0.6703755" visible="true" weight="0.14674735" />
+      <window_info active="true" content_ui="combo" id="Project" order="7" sideWeight="0.6703755" visible="true" weight="0.26096824" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32131147" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4147541" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -914,7 +867,8 @@
     <MESSAGE value="SuperClient was deleted. Add Custome functions to client interfaces" />
     <MESSAGE value="Test commit..." />
     <MESSAGE value="Add SQL Library" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add SQL Library" />
+    <MESSAGE value="Fixed few some Exceptions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed few some Exceptions" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1029,9 +983,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-287">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1057,12 +1008,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/view/fxml/messageBox.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/view/fxml/about.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/base/client/CustomerOrderClient.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1099,32 +1050,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderAddCtrl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="220" column="9" selection-start-line="220" selection-start-column="9" selection-end-line="220" selection-end-column="9" />
-          <folding>
-            <element signature="docComment;class#CustomerOrderAddCtrl#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerAddCtrl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="213" column="13" selection-start-line="209" selection-start-column="12" selection-end-line="213" selection-end-column="13" />
-          <folding>
-            <element signature="docComment;class#CustomerAddCtrl#0" />
-            <element signature="docComment;field#controllerType#0;class#CustomerAddCtrl#0" />
-            <element signature="method#initialize#0;class#CustomerAddCtrl#0" />
-            <element signature="method#showCustomerBtnEvent#0;class#CustomerAddCtrl#0" />
-            <element signature="method#cancelBtnEvent#0;class#CustomerAddCtrl#0" />
-            <element signature="method#prepareCustomerAddView#0;class#CustomerAddCtrl#0" />
-            <element signature="method#prepareCustomerUpdateView#0;class#CustomerAddCtrl#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/model/child/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1258">
@@ -1151,11 +1076,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#777#778#0" expanded="true" />
-            <element signature="e#804#805#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1191,58 +1111,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerClientImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-501">
-          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#639#640#0" expanded="true" />
-            <element signature="e#716#717#0" expanded="true" />
-            <element signature="method#getInstance#0;class#CustomerClientImpl#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/UserClientImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-960">
-          <caret line="87" column="28" lean-forward="true" selection-start-line="87" selection-start-column="28" selection-end-line="87" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/model/child/CustomerOrderData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="78" column="16" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#CustomerOrderData#0" />
-            <element signature="method#CustomerOrderData#1;class#CustomerOrderData#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/base/client/NormalOrderDataClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
           <caret line="18" column="74" selection-start-line="18" selection-start-column="74" selection-end-line="18" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/NormalOrderClientImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="76" column="57" selection-start-line="76" selection-start-column="57" selection-end-line="76" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1250,52 +1122,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
           <caret line="18" column="59" lean-forward="true" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/NormalOrderDataClientImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/model/child/NormalOrder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-381">
-          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
-          <folding>
-            <element signature="e#550#551#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerViewCtrl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="85" column="9" lean-forward="true" selection-start-line="85" selection-start-column="9" selection-end-line="85" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderClientImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="91" column="34" lean-forward="true" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/model/child/CustomerOrder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
+        <state relative-caret-position="1190">
           <caret line="100" column="43" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="43" />
           <folding>
             <element signature="e#1536#1537#0" expanded="true" />
@@ -1304,20 +1136,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderDataClientImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/com/model/child/NormalOrder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="55" column="97" selection-start-line="55" selection-start-column="77" selection-end-line="55" selection-end-column="97" />
+        <state relative-caret-position="391">
+          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#550#551#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/NormalOrderViewCtrl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="156" column="71" lean-forward="true" selection-start-line="156" selection-start-column="11" selection-end-line="156" selection-end-column="71" />
+        <state relative-caret-position="918">
+          <caret line="156" column="71" selection-start-line="156" selection-start-column="11" selection-end-line="156" selection-end-column="71" />
           <folding>
             <element signature="docComment;class#NormalOrderViewCtrl#0" />
             <element signature="method#initialize#0;class#NormalOrderViewCtrl#0" />
@@ -1331,12 +1163,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/model/child/CustomerOrderData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="78" column="16" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#CustomerOrderData#0" />
+            <element signature="method#CustomerOrderData#1;class#CustomerOrderData#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderViewCtrl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="126" column="56" selection-start-line="126" selection-start-column="56" selection-end-line="126" selection-end-column="56" />
+        <state relative-caret-position="1530">
+          <caret line="132" column="4" lean-forward="true" selection-start-line="132" selection-start-column="4" selection-end-line="132" selection-end-column="4" />
           <folding>
             <element signature="docComment;class#CustomerOrderViewCtrl#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerAddCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="113" column="81" lean-forward="true" selection-start-line="113" selection-start-column="81" selection-end-line="113" selection-end-column="81" />
+          <folding>
+            <element signature="docComment;class#CustomerAddCtrl#0" />
+            <element signature="docComment;field#controllerType#0;class#CustomerAddCtrl#0" />
+            <element signature="method#initialize#0;class#CustomerAddCtrl#0" />
+            <element signature="method#showCustomerBtnEvent#0;class#CustomerAddCtrl#0" />
+            <element signature="method#cancelBtnEvent#0;class#CustomerAddCtrl#0" />
+            <element signature="method#prepareCustomerUpdateView#0;class#CustomerAddCtrl#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerViewCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="134" column="46" selection-start-line="134" selection-start-column="46" selection-end-line="134" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/view/ctrl/CustomerOrderAddCtrl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="213" column="85" lean-forward="true" selection-start-line="213" selection-start-column="85" selection-end-line="213" selection-end-column="85" />
+          <folding>
+            <element signature="docComment;class#CustomerOrderAddCtrl#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/UserClientImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-393">
+          <caret line="118" selection-start-line="118" selection-end-line="118" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerClientImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-648">
+          <caret line="149" column="31" lean-forward="true" selection-start-line="149" selection-start-column="8" selection-end-line="149" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderDataClientImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="55" column="46" lean-forward="true" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/NormalOrderDataClientImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="76" column="27" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/CustomerOrderClientImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="44" column="74" selection-start-line="44" selection-start-column="74" selection-end-line="44" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/base/client/impl/NormalOrderClientImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="44" column="25" lean-forward="true" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

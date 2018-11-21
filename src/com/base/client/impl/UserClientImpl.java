@@ -34,6 +34,9 @@ public class UserClientImpl implements UserClient{
       
     @Override
     public boolean add(User user) throws SQLException, ClassNotFoundException {
+
+        if (user == null) return false;
+
         String query = "Insert into user value (?,?,?,?,?,?)";
         Connection conn = BaseConnection.createConnection().getConnection();
         conn.setAutoCommit(false);
@@ -62,6 +65,7 @@ public class UserClientImpl implements UserClient{
     @Override
     public boolean update(User user) throws SQLException, ClassNotFoundException {
 
+        if (user == null) return false;
 
         String query =  "Update user set    " +
                         "    recordDate = ?," +
@@ -97,6 +101,7 @@ public class UserClientImpl implements UserClient{
 
     @Override
     public boolean delete(int id) throws SQLException, ClassNotFoundException {
+        if (id < 0) return false;
         User user = new User(id);
         userList.remove(user);
 
@@ -109,6 +114,9 @@ public class UserClientImpl implements UserClient{
 
     @Override
     public User search(int id){
+
+        if (id < 0) return null;
+
         User user = new User(id);
         int index = userList.indexOf(user);
         if (index != -1) {
@@ -147,12 +155,12 @@ public class UserClientImpl implements UserClient{
 
     @Override
     public int getNextId() throws SQLException, ClassNotFoundException {
-        String query = "Select userId+1 from user order by 1 desc limit 1";
+        String query = "Select userId+1  as nextID from user order by 1 desc limit 1";
         Connection conn = BaseConnection.createConnection().getConnection();
         PreparedStatement state = conn.prepareStatement(query);
         ResultSet result = state.executeQuery();
         if (result.next()) {
-            return result.getInt(3);
+            return result.getInt("nextId");
         }
         return 0;
     }
