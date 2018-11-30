@@ -154,19 +154,6 @@ public class NormalOrderAddCtrl implements Initializable {
         }
     }
     
-    /*public void prepareNormalOrderUpdateView(NormalOrder normalOrder) {
-        try {
-            controllerType = State.ControllerType.NORMAL_ORDER_UPDATE;
-            printBtn.setText("Update");
-            normalOrderDataList = NormalOrderDataClientImpl.getInstance().getOrderData(normalOrder);
-            selectedNormalOrder = normalOrder;     
-            idText.setText(normalOrder.getId());
-            updateOrderDataView();
-        } catch (IOException ex) {
-            Logger.getLogger(NormalOrderAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
-    
     private void createNormalOrderAdd() {
         try {            
             selectedNormalOrder.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
@@ -185,15 +172,6 @@ public class NormalOrderAddCtrl implements Initializable {
             MessageBoxViewCtrl.displayError(e.getClass().getSimpleName(), e.getMessage());
         }
     }
-
-   /* private void createNormalOrderUpdate() {
-         try {
-            NormalOrderDataClientImpl.getInstance().updateOrderData(selectedNormalOrder, normalOrderDataList);
-            MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.UPDATE, Data.NORMAL_ORDER));
-        } catch (IOException ex) {
-            Logger.getLogger(NormalOrderAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
        
     private void clearFields(){
         normalOrderDataList.clear();

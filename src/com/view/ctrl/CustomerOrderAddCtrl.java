@@ -221,23 +221,6 @@ public class CustomerOrderAddCtrl implements Initializable {
         }
     }
 
-    /*
-    public void prepareCustomerOrderUpdateView(CustomerOrder customerOrder) {  
-        try {
-            controllerType = State.ControllerType.CUSTOMER_ORDER_UPDATE;
-            printBtn.setText("Update");
-            customerOrderDataList = CustomerOrderDataClientImpl.getInstance().getOrderData(customerOrder);
-            selectedCustomerOrder = customerOrder;
-            selectedCustomer = customerOrder.getCustomer();           
-            idText.setText(Integer.toString(customerOrder.getId()));
-            customerText.setText(customerOrder.getCustomer().getIdFullName());
-            updateOrderDataView();
-        } catch (IOException ex) {
-            Logger.getLogger(CustomerOrderAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    */
-
     private void createCustomerOrderAdd() {
         try {
             selectedCustomerOrder.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
@@ -256,21 +239,6 @@ public class CustomerOrderAddCtrl implements Initializable {
         }
     }
 
-    /*
-    private void createCustomerOrderUpdate() {
-         try {
-            selectedCustomerOrder.setCustomer(selectedCustomer);
-            System.out.println("aaaaaa");
-            CustomerOrderClientImpl.getInstance().update(selectedCustomerOrder);
-            System.out.println("bbbb");
-            CustomerOrderDataClientImpl.getInstance().updateOrderData(selectedCustomerOrder, customerOrderDataList);
-            System.out.println("ccccccc");
-            MessageBoxViewCtrl.display(Message.TITLE,String.format(Message.UPDATE, Data.CUSTOMER_ORDER));
-        } catch (IOException ex) {
-            Logger.getLogger(CustomerOrderAddCtrl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    */
 
     private void clearFields() {
         customerOrderDataList.clear();
