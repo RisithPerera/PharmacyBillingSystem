@@ -65,6 +65,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        System.out.println("This is a master extend");
         initializeDatabase();
         launch(args);
     }
