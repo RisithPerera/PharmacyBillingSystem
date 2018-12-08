@@ -10,33 +10,28 @@ package com.model.child;
 import com.manifest.Symbol;
 import com.model.superb.SuperModel;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 
 /**
  * @author RISITH-PC
  */
 
-public class Medicine extends SuperModel implements Comparable<Medicine> {
+public class Drug extends SuperModel implements Comparable<Drug> {
     private String date;
     private String time;
     private int id;
     private String name;
     private double price;
 
-    public Medicine() {
+    public Drug() {
     }
 
-    public Medicine(int id) {
+    public Drug(int id) {
         this.id = id;
     }
 
-    public Medicine(String date, String time, int id, String name, double price) {
+    public Drug(String date, String time, int id, String name, double price) {
         this.date = date;
         this.time = time;
         this.id = id;
@@ -100,15 +95,15 @@ public class Medicine extends SuperModel implements Comparable<Medicine> {
 
 
     @Override
-    public int compareTo(Medicine dto) {
+    public int compareTo(Drug dto) {
         boolean logic = dto.getId() > this.getId();
         return logic ? -1 : !logic ? 1 : 0;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Medicine) {
-            return ((Medicine) obj).getId() == this.getId();
+        if (obj instanceof Drug) {
+            return ((Drug) obj).getId() == this.getId();
         }
         return false;
     }
